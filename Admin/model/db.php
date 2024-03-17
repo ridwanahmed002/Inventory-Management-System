@@ -27,6 +27,17 @@ class db {
         return $conn->query($sqlstr);
     }
 
+    // Search admin by uname
+    function searchAdmin($conn, $uname) {
+        $sqlstr = "SELECT * FROM admin WHERE uname = '$uname'";
+        return $conn->query($sqlstr);
+    }
+    // Retrieve all admin data
+    function getAllAdmins($conn) {
+        $sqlstr = "SELECT * FROM admin";
+        return $conn->query($sqlstr);
+    }
+
     // Add employee
     function addEmployee($conn, $fname, $lname, $email, $section, $phone) {
         $sqlstr = "INSERT INTO employee (fname, lname, email, section, phone) VALUES ('$fname', '$lname', '$email', '$section', '$phone')";
