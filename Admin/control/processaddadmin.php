@@ -1,39 +1,47 @@
 <?php
-require_once '../model/db.php';
+require_once '../model/db.php'; // Adjust the path as necessary
 
-function isValidEmail($email) {
-    return filter_var($email, FILTER_VALIDATE_EMAIL);
-}
-
-function isValidPassword($password) {
-    return preg_match('/[0-9]/', $password) && preg_match('/[\W]/', $password);
-}
+$db = new db();
+$conn = $db->openConn();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $db = new db();
-    $conn = $db->openConn();
-
-    $uname = mysqli_real_escape_string($conn, $_POST['uname']);
+    $uname = $_POST['uname'];
+    $email = $_POST['email'];
     $pass = $_POST['pass'];
-    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $errors = [];
 
-    if (!isValidEmail($email) || !isValidPassword($pass)) {
-        die("Invalid email format or password criteria not met.");
+    // Validate email
+    if (strpos($email, '@') === false) {
+        $errors['email_error'] = "Invalid email format.";
     }
 
-    $checkQuery = "SELECT * FROM admin WHERE uname = '$uname' OR email = '$email'";
-    $result = $conn->query($checkQuery);
-    if ($result->num_rows > 0) {
-        die("Username or email already exists.");
+    // Validate password
+    if (!preg_match('/[0-9]/', $pass) || !preg_match('/[\W]/', $pass)) {
+        $errors['password_error'] = "Password must contain a number and a special character.";
     }
 
-    $passHash = password_hash($pass, PASSWORD_DEFAULT); 
-    $insertQuery = "INSERT INTO admin (uname, pass, email) VALUES ('$uname', '$passHash', '$email')";
-    if (!$conn->query($insertQuery)) {
-        die("Error adding admin.");
+    // Check for existing username
+    $result = $db->searchAdmin($conn, $uname);
+    if ($result && $result->num_rows > 0) {
+        $errors['username_error'] = "Username already exists.";
     }
 
-    echo "New admin added successfully.";
+    // Redirect back with error messages if there are any errors
+    if (!empty($errors)) {
+        $query = http_build_query($errors);
+        header("Location: addadmin.php?$query");
+        exit;
+    }
+
+    // If validation passes, add admin
+    if ($db->addAdmin($conn, $uname, $pass, $email)) {
+        echo "New admin added successfully.";
+    } else {
+        echo "Error adding admin.";
+    }
+    
     $db->closeConn($conn);
+} else {
+    echo "Invalid request method.";
 }
 ?>
