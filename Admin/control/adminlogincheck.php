@@ -21,7 +21,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     } else {
         $db->closeConn($conn); 
-        header("Location: ../view/adminlogin.php?error=Invalid%20Credentials"); 
+        //header("Location: ../view/adminlogin.php?error=Invalid%20Credentials"); 
+        echo "Incorrect, Try again";
         exit();
     }
 } else {
