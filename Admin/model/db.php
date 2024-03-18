@@ -45,11 +45,16 @@ class db {
         return $conn->query($sqlstr);
     }
 
-    // Add employee
-    function addEmployee($conn, $fname, $lname, $email, $section, $phone) {
-        $sqlstr = "INSERT INTO employee (fname, lname, email, section, phone) VALUES ('$fname', '$lname', '$email', '$section', '$phone')";
-        return $conn->query($sqlstr);
+    // Updated addEmployee function to include email
+    function addEmployee($conn, $fname, $lname, $age, $gender, $email, $contact, $address, $section) {
+        $sqlstr = "INSERT INTO employee (fname, lname, age, gender, email, contact, address, section) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        $stmt = $conn->prepare($sqlstr);
+        $stmt->bind_param("ssisssss", $fname, $lname, $age, $gender, $email, $contact, $address, $section);
+        $result = $stmt->execute();
+        $stmt->close();
+        return $result;
     }
+
 
     // Retrieve all employees data
     function getAllEmployees($conn) {
