@@ -59,8 +59,8 @@ class db {
         return $conn->query($sqlstr);
     }
 
-    function updateEmployee($conn, $employee_id, $fname, $lname, $email, $section, $contact) {
-        $sqlstr = "UPDATE employee SET fname='$fname', lname='$lname', email='$email', section='$section', contact='$contact' WHERE employee_id='$employee_id'";
+    function updateEmployee($conn, $employee_id, $fname, $lname, $email, $section, $contact, $age, $gender, $address) {
+        $sqlstr = "UPDATE employee SET fname='$fname', lname='$lname', email='$email', section='$section', contact='$contact', age='$age', gender='$gender', address='$address' WHERE employee_id='$employee_id'";
         return $conn->query($sqlstr);
     }
 
