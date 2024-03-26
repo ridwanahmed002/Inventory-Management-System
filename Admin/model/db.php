@@ -68,16 +68,17 @@ class db {
         $sqlstr = "DELETE FROM employee WHERE id = '$id'";
         return $conn->query($sqlstr);
     }
-
+    // Search for employees by id
     function searchEmployeeById($conn, $employee_id) {
         $sqlstr = "SELECT * FROM employee WHERE employee_id = '$employee_id'";
         return $conn->query($sqlstr);
     }
-
-    function searchEmployeeByPhone($conn, $phone) {
-        $sqlstr = "SELECT * FROM employee WHERE phone = '$phone'";
+    // Search employee by contact
+    function searchEmployeeByContact($conn, $contact) {
+        $sqlstr = "SELECT * FROM employee WHERE contact = '$contact'";
         return $conn->query($sqlstr);
     }
+    
 
     function addWarehouse($conn, $name, $location) {
         $sqlstr = "INSERT INTO warehouse (name, location) VALUES ('$name', '$location')";
