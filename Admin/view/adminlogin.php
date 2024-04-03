@@ -10,8 +10,7 @@
 
 <body>
     <center>
-        <form name="adminLoginForm" action="../control/adminlogincheck.php" method="post"
-            onsubmit="return validateAdminLogin()">
+        <form action="../control/adminlogincheck.php" method="post">
             <table>
                 <tr>
                     <td>Username:</td>
@@ -28,7 +27,6 @@
             </table>
         </form>
     </center>
-    <script src="../js/adminLogin.js"></script>
 </body>
 
 </html>
