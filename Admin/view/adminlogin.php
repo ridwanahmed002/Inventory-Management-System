@@ -5,11 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Login</title>
+    <link rel="stylesheet" href="../css/adminLogin.css">
 </head>
 
 <body>
     <center>
-        <form action="../control/adminlogincheck.php" method="post">
+        <form name="adminLoginForm" action="../control/adminlogincheck.php" method="post"
+            onsubmit="return validateAdminLogin()">
             <table>
                 <tr>
                     <td>Username:</td>
@@ -26,6 +28,7 @@
             </table>
         </form>
     </center>
+    <script src="../js/adminLogin.js"></script>
 </body>
 
 </html>

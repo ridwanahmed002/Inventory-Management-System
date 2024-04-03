@@ -1,11 +1,11 @@
 <?php
-session_start(); 
 
-require_once '../model/db.php'; 
+session_start();
 
+
+require_once '../model/db.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
     $uname = $_POST['uname'];
     $pass = $_POST['pass'];
 
@@ -15,13 +15,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = $db->loginAdmin($conn, $uname, $pass);
     
     if ($result->num_rows > 0) {
-        $_SESSION['uname'] = $uname; 
-        $db->closeConn($conn); 
-        header("Location: ../view/adminhome.php"); 
+        $_SESSION['uname'] = $uname;
+        
+        $db->closeConn($conn);
+        
+        header("Location: ../view/adminhome.php");
         exit();
     } else {
-        $db->closeConn($conn); 
-        echo "Incorrect, Try again";
+        $db->closeConn($conn);
+
+        echo "Incorrect username or password, please try again.";
         exit();
     }
 } else {
