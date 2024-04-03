@@ -1,11 +1,8 @@
 <?php
-// Start the session
 session_start();
 
-// Include the database connection file
 require_once '../model/db.php';
 
-// Check if the form was submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $uname = $_POST['uname'];
     $pass = $_POST['pass'];
@@ -22,7 +19,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     } else {
         $db->closeConn($conn);
-        // Echo a JavaScript snippet that will display an alert and redirect back to login
         echo "<script>
                 alert('Incorrect username or password, please try again.');
                 window.location.href='../view/adminlogin.php';

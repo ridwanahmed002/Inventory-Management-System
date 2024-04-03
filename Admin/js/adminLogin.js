@@ -1,4 +1,3 @@
-// adminLogin.js
 function validateAdminLogin() {
   var uname = document.forms["adminLoginForm"]["uname"].value;
   var pass = document.forms["adminLoginForm"]["pass"].value;

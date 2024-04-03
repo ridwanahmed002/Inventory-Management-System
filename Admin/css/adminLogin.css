@@ -1,4 +1,3 @@
-/* adminLogin.css */
 body {
   font-family: Arial, sans-serif;
 }
@@ -32,8 +31,8 @@ button {
 }
 
 button {
-  width: 105%; /* Adjusted to visually match the submit button's width including the border */
-  margin-left: -2px; /* To align the button's left edge with the input fields */
+  width: 105%;
+  margin-left: -2px;
 }
 
 .error-message {
