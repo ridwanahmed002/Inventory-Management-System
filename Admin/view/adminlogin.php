@@ -3,24 +3,29 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Login</title>
-    <link rel="stylesheet" type="text/css" href="../css/adminlogin.css">
-    <script type="text/javascript" src="../js/adminlogin.js"></script>
 </head>
 
 <body>
-
-    <div class="admin-login-form">
-        <h2>Admin Login</h2>
-        <form name="adminLoginForm" action="../control/adminlogincheck.php" method="post"
-            onsubmit="return validateAdminLoginForm()">
-            Username: <input type="text" id="username" name="username"><br>
-            Password: <input type="password" id="password" name="password"><br>
-            <input type="submit" value="Login">
-            <input type="reset" value="Reset">
+    <center>
+        <form action="../control/adminlogincheck.php" method="post">
+            <table>
+                <tr>
+                    <td>Username:</td>
+                    <td><input type="text" name="uname"></td>
+                </tr>
+                <tr>
+                    <td>Password:</td>
+                    <td><input type="password" name="pass"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="Login"></td>
+                </tr>
+            </table>
         </form>
-    </div>
-
+    </center>
 </body>
 
 </html>
