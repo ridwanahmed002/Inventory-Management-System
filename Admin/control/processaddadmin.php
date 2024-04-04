@@ -1,9 +1,6 @@
 <?php
 session_start();
 require_once '../model/db.php';
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 
 $db = new db();
 $conn = $db->openConn();
@@ -15,6 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $userCheck = $conn->query("SELECT uname FROM admin WHERE uname = '$uname'");
     if ($userCheck->num_rows > 0) {
+
         $_SESSION['error_message'] = 'Duplicate username.';
         header("Location: ../view/addadmin.php");
         exit();
@@ -22,7 +20,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $result = $db->addAdmin($conn, $uname, $pass, $email);
     if ($result) {
-        $_SESSION['add_admin_success'] = 'Admin added successfully!';
+        setcookie('admin_added', 'true', time() + 10, '/');
+        $_SESSION['success_message'] = 'Admin added successfully!';
     } else {
         $_SESSION['error_message'] = 'There was a problem adding the admin.';
     }
