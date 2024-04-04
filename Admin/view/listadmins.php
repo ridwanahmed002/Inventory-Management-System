@@ -15,32 +15,35 @@ $db->closeConn($conn);
 <head>
     <meta charset="UTF-8">
     <title>List of Admins</title>
+    <link rel="stylesheet" href="../css/listadmin.css">
 </head>
 
 <body>
-    <h2>List of Admins</h2>
-    <?php if ($result && $result->num_rows > 0): ?>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Admin ID</th>
-                <th>Username</th>
-                <th>Email</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php while ($row = $result->fetch_assoc()): ?>
-            <tr>
-                <td><?php echo htmlspecialchars($row['admin_id']); ?></td>
-                <td><?php echo htmlspecialchars($row['uname']); ?></td>
-                <td><?php echo htmlspecialchars($row['email']); ?></td>
-            </tr>
-            <?php endwhile; ?>
-        </tbody>
-    </table>
-    <?php else: ?>
-    <p>No admin records found.</p>
-    <?php endif; ?>
+    <div class="container">
+        <h2>List of Admins</h2>
+        <?php if ($result && $result->num_rows > 0): ?>
+        <table>
+            <thead>
+                <tr>
+                    <th>Admin ID</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php while ($row = $result->fetch_assoc()): ?>
+                <tr>
+                    <td><?php echo htmlspecialchars($row['admin_id']); ?></td>
+                    <td><?php echo htmlspecialchars($row['uname']); ?></td>
+                    <td><?php echo htmlspecialchars($row['email']); ?></td>
+                </tr>
+                <?php endwhile; ?>
+            </tbody>
+        </table>
+        <?php else: ?>
+        <p>No admin records found.</p>
+        <?php endif; ?>
+    </div>
 </body>
 
 </html>
