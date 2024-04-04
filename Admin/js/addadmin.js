@@ -1,8 +1,8 @@
 // addadmin.js
 document.addEventListener("DOMContentLoaded", function () {
+  var form = document.getElementById("addAdminForm");
   var unameInput = document.getElementById("uname");
   var emailInput = document.getElementById("email");
-  var form = document.getElementById("addAdminForm");
 
   unameInput.addEventListener("blur", function () {
     var xhr = new XMLHttpRequest();
@@ -10,23 +10,15 @@ document.addEventListener("DOMContentLoaded", function () {
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.onreadystatechange = function () {
       if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-        if (this.responseText !== "0") {
-          document.getElementById("unameError").textContent =
-            "Username is already taken.";
-        } else {
-          document.getElementById("unameError").textContent = "";
-        }
+        document.getElementById("unameError").textContent =
+          this.responseText === "1" ? "Username is already taken." : "";
       }
     };
-    xhr.send("uname=" + unameInput.value);
+    xhr.send("uname=" + encodeURIComponent(unameInput.value));
   });
 
   form.onsubmit = function (e) {
     var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    document.getElementById("unameError").textContent = "";
-    document.getElementById("emailError").textContent = "";
-
     if (!emailPattern.test(emailInput.value)) {
       document.getElementById("emailError").textContent =
         "Invalid email format";
