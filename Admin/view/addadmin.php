@@ -4,42 +4,35 @@
 <head>
     <meta charset="UTF-8">
     <title>Add Admin</title>
+    <link rel="stylesheet" href="../css/addadmin.css">
 </head>
 
 <body>
-    <h2>Add Admin</h2>
-    <form action="../control/processaddadmin.php" method="post">
-        <table>
-            <tr>
-                <td><label for="uname">Username:</label></td>
-                <td>
-                    <input type="text" id="uname" name="uname">
-                    <?php echo isset($_GET['username_error']) ? "<div>" . $_GET['username_error'] . "</div>" : ''; ?>
-                </td>
-            </tr>
-            <tr>
-                <td><label for="email">Email:</label></td>
-                <td>
-                    <input type="text" id="email" name="email">
-                    <?php echo isset($_GET['email_error']) ? "<div>" . $_GET['email_error'] . "</div>" : ''; ?>
-                </td>
-            </tr>
-            <tr>
-                <td><label for="pass">Password:</label></td>
-                <td>
-                    <input type="password" id="pass" name="pass">
-                    <?php echo isset($_GET['password_error']) ? "<div>" . $_GET['password_error'] . "</div>" : ''; ?>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <input type="submit" value="Add Admin">
-                    <input type="reset" value="Clear">
-                    <button type="button" onclick="window.location.href='adminmanagement.php';">Back</button>
-                </td>
-            </tr>
-        </table>
-    </form>
+    <div class="form-container">
+        <?php
+            if (isset($_SESSION['add_admin_success'])) {
+                echo "<p class='success-message'>" . $_SESSION['add_admin_success'] . "</p>";
+                unset($_SESSION['add_admin_success']);
+            }
+        ?>
+        <form id="addAdminForm" action="../control/processaddadmin.php" method="post">
+            <label for="uname">Username:</label>
+            <input type="text" id="uname" name="uname" required>
+            <span id="unameError" class="error-message"></span>
+
+            <label for="pass">Password:</label>
+            <input type="password" id="pass" name="pass" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <span id="emailError" class="error-message"></span>
+
+            <input type="submit" value="Proceed">
+            <input type="reset" value="Reset">
+            <button type="button" onclick="window.location.href='adminmanagement.php'">Back</button>
+        </form>
+    </div>
+    <script src="../js/addadmin.js"></script>
 </body>
 
 </html>

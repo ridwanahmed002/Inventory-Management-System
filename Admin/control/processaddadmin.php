@@ -1,47 +1,32 @@
 <?php
-require_once '../model/db.php'; // Adjust the path as necessary
+session_start();
+require_once '../model/db.php';
 
+// Assume $conn is your connection variable from db.php
 $db = new db();
 $conn = $db->openConn();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $uname = $_POST['uname'];
+    $pass = password_hash($_POST['pass'], PASSWORD_DEFAULT); // Hash the password
     $email = $_POST['email'];
-    $pass = $_POST['pass'];
-    $errors = [];
 
-    // Validate email
-    if (strpos($email, '@') === false) {
-        $errors['email_error'] = "Invalid email format.";
+    // Check if username is unique
+    $userCheck = $conn->query("SELECT uname FROM admin WHERE uname = '$uname'");
+    if ($userCheck->num_rows > 0) {
+        $_SESSION['error_message'] = 'Duplicate username.';
+        header("Location: ../view/addadmin.php");
+        exit();
     }
 
-    // Validate password
-    if (!preg_match('/[0-9]/', $pass) || !preg_match('/[\W]/', $pass)) {
-        $errors['password_error'] = "Password must contain a number and a special character.";
-    }
-
-    // Check for existing username
-    $result = $db->searchAdmin($conn, $uname);
-    if ($result && $result->num_rows > 0) {
-        $errors['username_error'] = "Username already exists.";
-    }
-
-    // Redirect back with error messages if there are any errors
-    if (!empty($errors)) {
-        $query = http_build_query($errors);
-        header("Location: addadmin.php?$query");
-        exit;
-    }
-
-    // If validation passes, add admin
-    if ($db->addAdmin($conn, $uname, $pass, $email)) {
-        echo "New admin added successfully.";
+    $result = $db->addAdmin($conn, $uname, $pass, $email);
+    if ($result) {
+        $_SESSION['add_admin_success'] = 'Admin added successfully!';
     } else {
-        echo "Error adding admin.";
+        $_SESSION['error_message'] = 'There was a problem adding the admin.';
     }
-    
     $db->closeConn($conn);
-} else {
-    echo "Invalid request method.";
+    header("Location: ../view/addadmin.php");
+    exit();
 }
 ?>

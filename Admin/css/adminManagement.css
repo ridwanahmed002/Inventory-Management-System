@@ -3,7 +3,7 @@ body {
   font-family: "Arial", sans-serif;
   margin: 0;
   padding: 0;
-  background-image: url("../image/admin-management-background.webp");
+  background-image: url("../image/admin-management-background.webp"); /* Update the path as needed */
   background-size: cover;
   background-position: center;
   height: 100vh;
@@ -12,15 +12,14 @@ body {
   align-items: center;
   flex-direction: column;
   text-align: center;
-  color: #2c3e50; /* Dark shade for the body text for contrast */
 }
 
 h2 {
+  color: #ffd700; /* Gold color for better visibility */
   margin: 0;
   padding-bottom: 20px;
-  font-size: 3em; /* Bigger text for the admin management title */
-  color: #f39c12; /* A warm color picked from the image for harmony */
-  text-shadow: 2px 2px 4px #2c3e50;
+  font-size: 3em;
+  text-shadow: 2px 2px 4px #000; /* Shadow for better readability */
 }
 
 ul {
@@ -29,40 +28,41 @@ ul {
 }
 
 li {
-  background: #f9e4d4;
-  color: #2c3e50;
+  background: #ffd700; /* Gold background for list items */
+  color: #000; /* Black text for readability */
   margin: 10px 0;
   padding: 10px 20px;
   border-radius: 5px;
   display: inline-block;
   width: auto;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
 }
 
 li a {
   text-decoration: none;
-  color: #2c3e50;
+  color: #000; /* Black text color for links */
   font-weight: bold;
 }
 
 li a:hover {
-  background-color: #f3d9c5;
-  color: #2c3e50;
+  background-color: #e6c200; /* Slightly darker gold on hover */
+  color: #000;
 }
 
 .back-button {
   padding: 10px 20px;
   margin-top: 20px;
-  font-size: 0.8em;
+  font-size: 1em;
   width: auto;
   border-radius: 5px;
-  box-shadow: 0px 0px 8px #2c3e50;
-  background: #f39c12;
-  color: #2c3e50;
+  background: #e6c200; /* Slightly darker gold for back button */
+  color: #000; /* Black text for back button */
   text-decoration: none;
   border: none;
   cursor: pointer;
 }
 
 .back-button:hover {
-  background-color: #e89f0c;
+  background-color: #ccad00; /* Even darker gold on hover */
 }
