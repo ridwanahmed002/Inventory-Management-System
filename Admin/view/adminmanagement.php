@@ -13,7 +13,6 @@
         <ul>
             <li><a href="addadmin.php">Add Admin</a></li>
             <li><a href="removeadmin.php">Remove Admin</a></li>
-            <li><a href="searchadmin.php">Search Admin</a></li>
             <li><a href="listadmins.php">List Admins</a></li>
         </ul>
         <a href="adminhome.php" class="back-button">Back</a>
