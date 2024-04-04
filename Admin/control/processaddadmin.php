@@ -1,17 +1,18 @@
 <?php
 session_start();
 require_once '../model/db.php';
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
-// Assume $conn is your connection variable from db.php
 $db = new db();
 $conn = $db->openConn();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $uname = $_POST['uname'];
-    $pass = password_hash($_POST['pass'], PASSWORD_DEFAULT); // Hash the password
+    $pass = password_hash($_POST['pass'], PASSWORD_DEFAULT); 
     $email = $_POST['email'];
 
-    // Check if username is unique
     $userCheck = $conn->query("SELECT uname FROM admin WHERE uname = '$uname'");
     if ($userCheck->num_rows > 0) {
         $_SESSION['error_message'] = 'Duplicate username.';
