@@ -1,5 +1,6 @@
-admin phpmyadmin table
-file:///home/ridwan/Pictures/Screenshots/Screenshot%20from%202024-04-04%2012-52-01.png
+admin table
+
+![Screenshot from 2024-04-04 12-55-57](https://github.com/ridwanahmed002/Inventory-Management-System/assets/149960584/a9aeb90d-ec5a-47d0-9bd3-0a6552d0e367)
 
 Admin login page 
 
@@ -16,3 +17,5 @@ Admin management Dashboard
 Add admin page
 
 ![Screenshot from 2024-04-04 12-50-37](https://github.com/ridwanahmed002/Inventory-Management-System/assets/149960584/de032686-a66d-4b40-9aee-a4783675991a)
+
+
