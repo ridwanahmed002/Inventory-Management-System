@@ -78,22 +78,18 @@ class db {
         $sqlstr = "SELECT * FROM employee WHERE contact = '$contact'";
         return $conn->query($sqlstr);
     }
-    
 
-    function addWarehouse($conn, $name, $location) {
-        $sqlstr = "INSERT INTO warehouse (name, location) VALUES ('$name', '$location')";
-        return $conn->query($sqlstr);
-    }
+    // Add warehouse
+    function addWarehouse($conn, $warehouse_id, $location, $full_location, $capacity, $no_of_employee) {
+        $sqlstr = "INSERT INTO warehouse (warehouse_id, location, full_location, capacity, no_of_employee) VALUES (?, ?, ?, ?, ?)";
+        $stmt = $conn->prepare($sqlstr);
+        $stmt->bind_param("sssss", $warehouse_id, $location, $full_location, $capacity, $no_of_employee);
+        $result = $stmt->execute();
+        $stmt->close();
+        return $result;
+}
 
-    function removeWarehouseById($conn, $id) {
-        $sqlstr = "DELETE FROM warehouse WHERE id = '$id'";
-        return $conn->query($sqlstr);
-    }
 
-    function getCustomerSupportBySection($conn, $section) {
-        $sqlstr = "SELECT email, phone FROM employee WHERE section = '$section'";
-        return $conn->query($sqlstr);
-    }
 
     function closeConn($conn) {
         $conn->close();

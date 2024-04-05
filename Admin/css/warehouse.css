@@ -4,16 +4,20 @@ html {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
-  background: url("../image/warehouse_background.svg") no-repeat left center
+  background: url("../image/warehouse_background.svg") no-repeat center center
     fixed;
   background-size: cover;
 }
 
-.container {
+.form-container {
   position: absolute;
-  top: 25%;
   right: 10%;
-  text-align: right;
+  top: 20%;
+  transform: translateY(-20%);
+  background-color: #f3f3f3;
+  padding: 20px;
+  border-radius: 5px;
+  width: 350px;
 }
 
 .container h2 {

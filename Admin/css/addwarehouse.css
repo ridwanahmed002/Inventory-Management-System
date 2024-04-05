@@ -1,0 +1,60 @@
+body,
+html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background: url("../image/warehouse_background.svg") no-repeat left center
+    fixed;
+  background-size: cover;
+}
+.form-container {
+  max-width: 400px;
+  margin-right: 50px;
+  margin-bottom: 50px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  background-color: #f3f3f3;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.form-container h2 {
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-container input[type="text"],
+.form-container input[type="number"],
+.form-container textarea,
+.form-container select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-container .error-message {
+  color: red;
+  display: none;
+}
+
+.form-container .buttons {
+  text-align: center;
+}
+
+.form-container .buttons button {
+  padding: 10px 20px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.form-container .buttons button:last-child {
+  background-color: #f44336;
+  color: white;
+}
