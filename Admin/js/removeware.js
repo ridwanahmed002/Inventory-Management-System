@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // Fetch the list of warehouses from the server
   fetch("../control/processremoveware.php?action=list")
     .then((response) => response.json())
     .then((data) => {
@@ -9,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
         tr.innerHTML = `
                     <td>${warehouse.warehouse_id}</td>
                     <td>${warehouse.full_location}</td>
-                    <td><button onclick="confirmRemoval(${warehouse.warehouse_id})">❌</button></td>
+                    <td><button onclick="confirmRemoval(${warehouse.warehouse_id})">Delete</button></td>
                 `;
         tbody.appendChild(tr);
       });
@@ -25,7 +24,7 @@ function confirmRemoval(warehouseId) {
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
-          window.location.reload(); // Reload the page to update the list
+          window.location.reload();
         } else {
           alert("Error: Could not delete the warehouse.");
         }

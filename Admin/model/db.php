@@ -30,13 +30,17 @@ class db {
         $sqlstr = "SELECT * FROM admin WHERE uname = '$uname'";
         return $conn->query($sqlstr);
     }
-    
-    function deleteAdmin($conn, $uname) {
-        $sqlstr = "DELETE FROM admin WHERE uname = '$uname'";
+    // 2 functions for remove admin
+
+    function deleteAdmin($conn, $admin_id) {
+        $sqlstr = "DELETE FROM admin WHERE admin_id = '$admin_id'";
         return $conn->query($sqlstr);
     }
 
-    
+    function getAdminIdAndUname($conn) {
+        $sqlstr = "SELECT admin_id, uname FROM admin";
+        return $conn->query($sqlstr);
+    }
     
     // Retrieve all admin data
     function getAllAdmins($conn) {

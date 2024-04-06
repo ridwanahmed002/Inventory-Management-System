@@ -12,7 +12,7 @@
         <h2>Admin Management</h2>
         <ul>
             <li><a href="addadmin.php">Add Admin</a></li>
-            <li><a href="remove_admin.php">Remove Admin</a></li>
+            <li><a href="removeadmin.php">Remove Admin</a></li>
             <li><a href="listadmins.php">List Admins</a></li>
         </ul>
         <a href="adminhome.php" class="back-button">Back</a>

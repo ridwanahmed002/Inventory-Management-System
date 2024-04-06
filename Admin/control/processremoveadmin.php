@@ -8,12 +8,12 @@ $action = $_GET['action'] ?? '';
 
 if ($action == 'list') {
     header('Content-Type: application/json');
-    $result = $db->getWarehouseIdAndLocation($conn);
+    $result = $db->getAdminIdAndUname($conn);
     echo json_encode($result->fetch_all(MYSQLI_ASSOC));
-} elseif ($action == 'delete' && isset($_GET['warehouse_id'])) {
+} elseif ($action == 'delete' && isset($_GET['admin_id'])) {
     header('Content-Type: application/json');
-    $warehouseId = $_GET['warehouse_id'];
-    $success = $db->deleteWarehouse($conn, $warehouseId);
+    $adminId = $_GET['admin_id'];
+    $success = $db->deleteAdmin($conn, $adminId);
     echo json_encode(['success' => $success]);
 }
 

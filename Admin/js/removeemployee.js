@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     <td>${employee.employee_id}</td>
                     <td>${employee.contact}</td>
                     <td>${employee.section}</td>
-                    <td><button onclick="confirmRemoval(${employee.employee_id})">❌</button></td>
+                    <td><button onclick="confirmRemoval(${employee.employee_id})">Delete</button></td>
                 `;
         tbody.appendChild(tr);
       });
