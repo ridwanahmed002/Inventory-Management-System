@@ -18,4 +18,10 @@ Add admin page
 
 ![Screenshot from 2024-04-04 12-50-37](https://github.com/ridwanahmed002/Inventory-Management-System/assets/149960584/de032686-a66d-4b40-9aee-a4783675991a)
 
+Add warehouse
 
+![Screenshot from 2024-04-06 23-17-06](https://github.com/ridwanahmed002/Inventory-Management-System/assets/149960584/4adf62e1-75e4-4280-89dc-245f5a75f98e)
+
+Remove warehouse
+
+![Screenshot from 2024-04-06 23-17-52](https://github.com/ridwanahmed002/Inventory-Management-System/assets/149960584/5dd1a769-b250-4af8-b7f3-ff9b12a4f765)
