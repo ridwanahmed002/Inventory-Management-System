@@ -43,6 +43,7 @@ $db->closeConn($conn);
         <?php else: ?>
         <p>No admin records found.</p>
         <?php endif; ?>
+        <button onclick="window.location.href='adminmanagement.php';">Back</button>
     </div>
 </body>
 

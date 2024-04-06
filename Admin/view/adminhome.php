@@ -16,7 +16,7 @@
             <li><a href="warehousemanagement.php">Warehouse Management</a></li>
             <li><a href="employeemanagement.php">Employee Management</a></li>
         </ul>
-        <a href="adminlogin.php" class="back-button">Back</a>
+        <a href="adminlogin.php" class="back-button">Log Out</a>
     </div>
 </body>
 
