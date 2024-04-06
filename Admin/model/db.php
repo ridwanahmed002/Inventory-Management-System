@@ -95,6 +95,17 @@ class db {
         return $conn->query($sqlstr);
     }
 
+    function deleteWarehouse($conn, $warehouse_id) {
+        $sqlstr = "DELETE FROM warehouse WHERE warehouse_id = $warehouse_id";
+        return $conn->query($sqlstr);
+    }
+
+    function getWarehouseIdAndLocation($conn) {
+        $sqlstr = "SELECT warehouse_id, full_location FROM warehouse";
+        $result = $conn->query($sqlstr);
+        return $result;
+    }
+
 
 
     function closeConn($conn) {
