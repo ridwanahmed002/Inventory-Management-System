@@ -87,7 +87,13 @@ class db {
         $result = $stmt->execute();
         $stmt->close();
         return $result;
-}
+    }
+
+    // Retrieve all warehouse data
+    function getAllWarehouse($conn) {
+        $sqlstr = "SELECT * FROM warehouse";
+        return $conn->query($sqlstr);
+    }
 
 
 

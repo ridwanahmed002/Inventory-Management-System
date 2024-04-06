@@ -12,7 +12,7 @@
         <h2>Warehouse Management</h2>
         <div class="buttons">
             <button onclick="window.location='addwarehouse.php';">Add Warehouse</button>
-            <button onclick="window.location='listwarehouses.php';">List Warehouses</button>
+            <button onclick="window.location='listwarehouse.php';">List Warehouses</button>
             <button onclick="window.location='removewarehouse.php';">Remove Warehouse</button>
             <button class="back-button" onclick="window.location='adminhome.php';">Back</button>
         </div>
