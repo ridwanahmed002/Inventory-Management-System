@@ -64,8 +64,13 @@ class db {
         return $conn->query($sqlstr);
     }
 
-    function deleteEmployeeById($conn, $id) {
-        $sqlstr = "DELETE FROM employee WHERE id = '$id'";
+    function deleteEmployee($conn, $employee_id) {
+        $sqlstr = "DELETE FROM employee WHERE employee_id = $employee_id";
+        return $conn->query($sqlstr);
+    }
+
+    function getEmployeeIdAndContact($conn) {
+        $sqlstr = "SELECT employee_id, contact,section FROM employee";
         return $conn->query($sqlstr);
     }
     // Search for employees by id
