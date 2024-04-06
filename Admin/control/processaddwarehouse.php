@@ -1,29 +1,28 @@
 <?php
 require_once '../model/db.php';
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
-
 
 $db = new db();
 $conn = $db->openConn();
 
-if (isset($_POST['warehouse_id'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $warehouseId = $_POST['warehouse_id'];
     $fullLocation = $_POST['full_location'];
     $totalCapacity = $_POST['total_capacity'];
     $noOfEmployees = $_POST['no_of_employees'];
     $location = $_POST['location'];
 
-    $result = $db->addWarehouse($conn, $warehouseId, $location, $fullLocation, $totalCapacity, $noOfEmployees);
-
-    $db->closeConn($conn);
-
-    if ($result) {
-        echo "<script>alert('Warehouse successfully added.'); window.location.href='../view/addwarehouse.php';</script>";
+    if ($totalCapacity < 100 || $noOfEmployees < 5) {
+        $error = $totalCapacity < 100 ? "capacity_error" : "employee_error";
+        header("Location: ../view/addwarehouse.php?error=$error");
+        exit();
     } else {
-        echo "<script>alert('Error adding warehouse.'); window.history.back();</script>";
+        $result = $db->addWarehouse($conn, $warehouseId, $location, $fullLocation, $totalCapacity, $noOfEmployees);
+
+        if ($result) {
+            header("Location: ../view/addwarehouse.php?success=1");
+        } else {
+            header("Location: ../view/addwarehouse.php?error=general");
+        }
+        exit();
     }
-} else {
-    echo "No data received.";
 }
-?>
