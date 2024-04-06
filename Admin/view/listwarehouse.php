@@ -1,12 +1,6 @@
 <?php
-require_once '../model/db.php'; 
-
-$db = new db();
-$conn = $db->openConn();
-
-$result = $db->getAllWarehouse($conn);
-
-$db->closeConn($conn); 
+require_once '../control/processlistwarehouses.php'; 
+$warehouseData = getWarehouseData();
 ?>
 
 <!DOCTYPE html>
@@ -21,7 +15,7 @@ $db->closeConn($conn);
 <body>
     <div class="container">
         <h2>List of Warehouses</h2>
-        <?php if ($result && $result->num_rows > 0): ?>
+        <?php if ($warehouseData && $warehouseData->num_rows > 0): ?>
         <table>
             <thead>
                 <tr>
@@ -33,7 +27,7 @@ $db->closeConn($conn);
                 </tr>
             </thead>
             <tbody>
-                <?php while ($row = $result->fetch_assoc()): ?>
+                <?php while ($row = $warehouseData->fetch_assoc()): ?>
                 <tr>
                     <td><?php echo htmlspecialchars($row['warehouse_id']); ?></td>
                     <td><?php echo htmlspecialchars($row['location']); ?></td>

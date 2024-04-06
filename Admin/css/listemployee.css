@@ -3,7 +3,7 @@ html {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
-  background: url("../image/warehouse_background.svg") no-repeat center center
+  background: url("../image/employee_background.svg") no-repeat center center
     fixed;
   background-size: cover;
   height: 100%;
@@ -14,8 +14,8 @@ html {
   right: 10%;
   top: 50%;
   transform: translateY(-50%);
-  width: 50%;
-  max-width: 700px;
+  width: 80%;
+  max-width: 800px;
   background-color: rgba(255, 255, 255, 0.8);
   padding: 20px;
   border-radius: 5px;

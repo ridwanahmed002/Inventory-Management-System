@@ -1,12 +1,6 @@
 <?php
-require_once '../model/db.php'; 
-
-$db = new db();
-$conn = $db->openConn();
-
-$result = $db->getAllAdmins($conn);
-
-$db->closeConn($conn); 
+require_once '../control/processlistadmins.php';
+$adminsData = fetchAllAdmins();
 ?>
 
 <!DOCTYPE html>
@@ -21,7 +15,7 @@ $db->closeConn($conn);
 <body>
     <div class="container">
         <h2>List of Admins</h2>
-        <?php if ($result && $result->num_rows > 0): ?>
+        <?php if ($adminsData && $adminsData->num_rows > 0): ?>
         <table>
             <thead>
                 <tr>
@@ -31,7 +25,7 @@ $db->closeConn($conn);
                 </tr>
             </thead>
             <tbody>
-                <?php while ($row = $result->fetch_assoc()): ?>
+                <?php while ($row = $adminsData->fetch_assoc()): ?>
                 <tr>
                     <td><?php echo htmlspecialchars($row['admin_id']); ?></td>
                     <td><?php echo htmlspecialchars($row['uname']); ?></td>
