@@ -2,7 +2,7 @@ body {
   font-family: "Arial", sans-serif;
   margin: 0;
   padding: 0;
-  background-image: url("../image/admin_background.svg");
+  background-image: url("../image/employee_background.svg");
   background-size: cover;
   background-position: center;
   height: 100vh;
@@ -10,11 +10,11 @@ body {
   justify-content: flex-end;
   align-items: center;
   text-align: center;
-  padding-right: 300px;
+  padding-right: 200px;
 }
 
 h2 {
-  color: #ffd700;
+  color: #10100f;
   margin: 0;
   padding-bottom: 20px;
   font-size: 3em;
@@ -55,7 +55,7 @@ li a:hover {
   font-size: 1em;
   width: auto;
   border-radius: 5px;
-  background: #de3f0f;
+  background: #dc370a;
   color: #000;
   text-decoration: none;
   border: none;
