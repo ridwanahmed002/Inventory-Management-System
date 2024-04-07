@@ -75,3 +75,15 @@ button {
   margin: 10px 0;
   border-radius: 5px;
 }
+.gender-selection {
+  margin-bottom: 10px;
+}
+
+.gender-selection span,
+.gender-selection label {
+  display: inline;
+  margin-right: 5px;
+}
+.gender-selection input[type="radio"] {
+  margin-right: 2px;
+}

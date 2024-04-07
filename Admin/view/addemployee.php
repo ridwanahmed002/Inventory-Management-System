@@ -30,14 +30,14 @@
             <input type="text" id="lname" name="lname" required>
             <label for="age">Age:</label>
             <input type="number" id="age" name="age" required>
-            Gender:
-            <div>
-                <input type="radio" id="gender_male" name="gender" value="Male" required> <label
-                    for="gender_male">Male</label>
-                <input type="radio" id="gender_female" name="gender" value="Female" required> <label
-                    for="gender_female">Female</label>
-                <input type="radio" id="gender_other" name="gender" value="Other" required> <label
-                    for="gender_other">Other</label>
+            <div class="gender-selection">
+                <span>Gender:</span>
+                <label for="gender_male"><input type="radio" id="gender_male" name="gender" value="Male" required>
+                    Male</label>
+                <label for="gender_female"><input type="radio" id="gender_female" name="gender" value="Female" required>
+                    Female</label>
+                <label for="gender_other"><input type="radio" id="gender_other" name="gender" value="Other" required>
+                    Other</label>
             </div>
             <label for="contact">Contact:</label>
             <input type="text" id="contact" name="contact" required>
