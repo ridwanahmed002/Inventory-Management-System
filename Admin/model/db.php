@@ -58,6 +58,16 @@ class db {
         return $result;
     }
 
+    function contactExists($conn, $contact) {
+        $sql = "SELECT * FROM employee WHERE contact = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("s", $contact);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        return $result->num_rows > 0;
+    }
+
     function getAllEmployees($conn) {
         $sqlstr = "SELECT * FROM employee";
         return $conn->query($sqlstr);

@@ -4,84 +4,62 @@
 <head>
     <meta charset="UTF-8">
     <title>Add Employee</title>
+    <link rel="stylesheet" href="../css/addemployee.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
-    <h2>Add Employee</h2>
-    <form action="../control/processaddemployee.php" method="post">
-        <table>
-            <tr>
-                <td><label for="fname">First Name:</label></td>
-                <td>
-                    <input type="text" id="fname" name="fname">
-                    <?php echo isset($_GET['fname_error']) ? $_GET['fname_error'] : ''; ?>
-                </td>
-            </tr>
-            <tr>
-                <td><label for="lname">Last Name:</label></td>
-                <td>
-                    <input type="text" id="lname" name="lname">
-                    <?php echo isset($_GET['lname_error']) ? $_GET['lname_error'] : ''; ?>
-                </td>
-            </tr>
-            <tr>
-                <td><label for="age">Age:</label></td>
-                <td>
-                    <input type="number" id="age" name="age">
-                    <?php echo isset($_GET['age_error']) ? $_GET['age_error'] : ''; ?>
-                </td>
-            </tr>
-            <tr>
-                <td>Gender:</td>
-                <td>
-                    <input type="radio" id="gender_male" name="gender" value="Male"> <label
-                        for="gender_male">Male</label>
-                    <input type="radio" id="gender_female" name="gender" value="Female"> <label
-                        for="gender_female">Female</label>
-                    <input type="radio" id="gender_other" name="gender" value="Other"> <label
-                        for="gender_other">Other</label>
-                    <?php echo isset($_GET['gender_error']) ? $_GET['gender_error'] : ''; ?>
-                </td>
-            </tr>
-            <tr>
-                <td><label for="contact">Contact Info:</label></td>
-                <td>
-                    <input type="text" id="contact" name="contact">
-                    <?php echo isset($_GET['contact_error']) ? $_GET['contact_error'] : ''; ?>
-                </td>
-            </tr>
-            <tr>
-                <td><label for="email">Email:</label></td>
-                <td>
-                    <input type="text" id="email" name="email">
-                    <?php echo isset($_GET['email_error']) ? $_GET['email_error'] : ''; ?>
-                </td>
-            </tr>
-            <tr>
-                <td><label for="address">Address:</label></td>
-                <td>
-                    <input type="text" id="address" name="address">
-                    <?php echo isset($_GET['address_error']) ? $_GET['address_error'] : ''; ?>
-                </td>
-            </tr>
-            <tr>
-                <td><label for="section">Department:</label></td>
-                <td>
-                    <select id="section" name="section">
-                        <option value="Logistics">Logistics</option>
-                        <option value="Customer Support">Customer Support</option>
-                        <option value="Human Resources">Human Resources</option>
-                        <option value="Finance">Finance</option>
-                    </select>
-                </td>
-            </tr>
-            <td colspan="2" style="text-align: center;">
+    <?php session_start(); ?>
+    <div class="form-container">
+        <h2>Add Employee</h2>
+        <?php
+        if (isset($_SESSION['success_message'])) {
+            echo "<div class='success-message'>" . $_SESSION['success_message'] . "</div>";
+            unset($_SESSION['success_message']);
+        }
+        
+        if (isset($_SESSION['error_message'])) {
+            echo "<div class='error-message'>" . $_SESSION['error_message'] . "</div>";
+            unset($_SESSION['error_message']);
+        }
+        ?>
+        <form id="addEmployeeForm" action="../control/processaddemployee.php" method="post">
+            <label for="fname">First Name:</label>
+            <input type="text" id="fname" name="fname" required>
+            <label for="lname">Last Name:</label>
+            <input type="text" id="lname" name="lname" required>
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required>
+            Gender:
+            <div>
+                <input type="radio" id="gender_male" name="gender" value="Male" required> <label
+                    for="gender_male">Male</label>
+                <input type="radio" id="gender_female" name="gender" value="Female" required> <label
+                    for="gender_female">Female</label>
+                <input type="radio" id="gender_other" name="gender" value="Other" required> <label
+                    for="gender_other">Other</label>
+            </div>
+            <label for="contact">Contact:</label>
+            <input type="text" id="contact" name="contact" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" required>
+            <label for="section">Section:</label>
+            <select id="section" name="section" required>
+                <option value="Logistics">Logistics</option>
+                <option value="Customer Support">Customer Support</option>
+                <option value="Finance">Finance</option>
+                <option value="Others">Others</option>
+            </select>
+            <div class="form-actions">
                 <input type="submit" value="Add Employee">
-                <input type="reset" value="Clear">
+                <input type="reset" value="Reset">
                 <button type="button" onclick="window.location.href='employeemanagement.php';">Back</button>
-            </td>
-        </table>
-    </form>
+            </div>
+        </form>
+    </div>
+    <script src="../js/addemployee.js"></script>
 </body>
 
 </html>
