@@ -72,12 +72,8 @@ class db {
         $sqlstr = "SELECT * FROM employee";
         return $conn->query($sqlstr);
     }
-
-    function updateEmployee($conn, $employee_id, $fname, $lname, $email, $section, $contact, $age, $gender, $address) {
-        $sqlstr = "UPDATE employee SET fname='$fname', lname='$lname', email='$email', section='$section', contact='$contact', age='$age', gender='$gender', address='$address' WHERE employee_id='$employee_id'";
-        return $conn->query($sqlstr);
-    }
-
+    
+    
     function deleteEmployee($conn, $employee_id) {
         $sqlstr = "DELETE FROM employee WHERE employee_id = $employee_id";
         return $conn->query($sqlstr);
@@ -87,7 +83,14 @@ class db {
         $sqlstr = "SELECT employee_id, contact,section FROM employee";
         return $conn->query($sqlstr);
     }
-
+    function updateEmployee($conn, $employee_id, $fname, $lname, $email, $section, $contact, $age, $gender, $address) {
+        $sql = "UPDATE employee SET fname=?, lname=?, email=?, section=?, contact=?, age=?, gender=?, address=? WHERE employee_id=?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("sssssisss", $fname, $lname, $email, $section, $contact, $age, $gender, $address, $employee_id);
+        $success = $stmt->execute();
+        $stmt->close();
+        return $success;
+    }
     // Search employee by contact
     function searchEmployeeByContact($conn, $contact) {
         $sqlstr = "SELECT * FROM employee WHERE contact = '$contact'";

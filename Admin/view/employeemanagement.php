@@ -15,7 +15,7 @@
             <li><a href="removeemployee.php">Remove Employee</a></li>
             <li><a href="searchEmployee.php">Search Employee</a></li>
             <li><a href="listemployees.php">List Employees</a></li>
-            <li><a href="editemployees.php">Edit Employees</a></li>
+            <li><a href="editEmployee.php">Edit Employees</a></li>
         </ul>
         <a href="adminhome.php" class="back-button">Back</a>
 </body>

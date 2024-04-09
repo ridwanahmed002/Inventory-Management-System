@@ -14,6 +14,7 @@
         <form id="searchForm">
             <input type="text" id="contactInput" name="contact" placeholder="Enter contact number" required>
             <input type="submit" value="Search">
+            <button onclick="window.location.href='employeemanagement.php';">Back</button>
         </form>
         <div id="searchResults">
             <table id="resultsTable" style="display:none;">
