@@ -18,6 +18,10 @@ Remove employee
 
 ![Screenshot from 2024-04-07 15-13-34](https://github.com/ridwanahmed002/Inventory-Management-System/assets/149960584/c21fa108-6561-4066-a01d-500d4220a1b2)
 
+Search employee with contact 
+
+![Screenshot from 2024-04-09 13-42-37](https://github.com/ridwanahmed002/Inventory-Management-System/assets/149960584/de49e757-313a-4d69-b9f0-8d7a3b55d8a6)
+
 List warehouse
 
 ![Screenshot from 2024-04-07 15-14-54](https://github.com/ridwanahmed002/Inventory-Management-System/assets/149960584/8c253f86-c63d-415e-8447-4644524e3891)
