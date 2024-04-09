@@ -87,16 +87,13 @@ class db {
         $sqlstr = "SELECT employee_id, contact,section FROM employee";
         return $conn->query($sqlstr);
     }
-    // Search for employees by id
-    function searchEmployeeById($conn, $employee_id) {
-        $sqlstr = "SELECT * FROM employee WHERE employee_id = '$employee_id'";
-        return $conn->query($sqlstr);
-    }
+
     // Search employee by contact
     function searchEmployeeByContact($conn, $contact) {
         $sqlstr = "SELECT * FROM employee WHERE contact = '$contact'";
         return $conn->query($sqlstr);
     }
+
 
     // Add warehouse
     function addWarehouse($conn, $warehouse_id, $location, $full_location, $capacity, $no_of_employee) {

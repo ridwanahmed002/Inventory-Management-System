@@ -13,7 +13,7 @@
         <ul>
             <li><a href="addemployee.php">Add Employee</a></li>
             <li><a href="removeemployee.php">Remove Employee</a></li>
-            <li><a href="searchemployee.php">Search Employee</a></li>
+            <li><a href="searchEmployee.php">Search Employee</a></li>
             <li><a href="listemployees.php">List Employees</a></li>
             <li><a href="editemployees.php">Edit Employees</a></li>
         </ul>
