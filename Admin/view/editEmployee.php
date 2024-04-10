@@ -9,7 +9,6 @@
 
 <body>
     <div>
-        <h2>Search Employee by Contact</h2>
         <form id="searchEmployeeForm">
             <input type="text" id="contactSearch" name="contact" placeholder="Enter Contact Number" required>
             <input type="submit" value="Search">
