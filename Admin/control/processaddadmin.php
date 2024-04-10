@@ -3,14 +3,13 @@ session_start();
 require_once '../model/db.php';
 
 $db = new db();
-$conn = $db->openConn();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $uname = $_POST['uname'];
     $pass = password_hash($_POST['pass'], PASSWORD_DEFAULT); 
     $email = $_POST['email'];
 
-    $userCheck = $conn->query("SELECT uname FROM admin WHERE uname = '$uname'");
+    $userCheck = $db->query("SELECT uname FROM admin WHERE uname = '$uname'");
     if ($userCheck->num_rows > 0) {
 
         $_SESSION['error_message'] = 'Duplicate username.';

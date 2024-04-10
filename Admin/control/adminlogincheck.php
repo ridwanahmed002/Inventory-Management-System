@@ -8,9 +8,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $pass = $_POST['pass'];
 
     $db = new db();
-    $conn = $db->openConn();
 
-    $result = $db->loginAdmin($conn, $uname, $pass);
+    $result = $db->loginAdmin($uname, $pass);
 
     if ($result->num_rows > 0) {
         $_SESSION['uname'] = $uname;

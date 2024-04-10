@@ -6,46 +6,60 @@ class db {
     private $password = "";
     private $dbname = "Admin";
 
-    function openConn() {
-        $conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
+    private $conn;
+
+    public function __construct() {
+        $this->openConn(); // This is called automatically when a new instance is created
+    }
+
+    private function openConn() {
+        $this->conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
+        if ($this->conn->connect_error) {
+            die("Connection failed: " . $this->conn->connect_error); // Ideally, handle this more gracefully
         }
-        return $conn;
     }
 
     // Admin login
-    function loginAdmin($conn, $uname, $pass) {
+    function loginAdmin($uname, $pass) {
         $sqlstr = "SELECT uname, pass FROM admin WHERE uname = '$uname' AND pass = '$pass'";
-        return $conn->query($sqlstr);
+        $result = $this->conn->query($sqlstr);
+        return $result;
     }
 
     // Add admin
     function addAdmin($conn, $uname, $pass, $email) {
         $sqlstr = "INSERT INTO admin (uname, pass, email) VALUES ('$uname', '$pass', '$email')";
-        return $conn->query($sqlstr);
+        $result = $this->conn->query($sqlstr);
+        return $result;
+    }
+    public function query($sql) {
+        return $this->conn->query($sql);
     }
 
     function searchAdmin($conn, $uname) {
         $sqlstr = "SELECT * FROM admin WHERE uname = '$uname'";
-        return $conn->query($sqlstr);
+        $result = $this->conn->query($sqlstr);
+        return $result;
     }
     // 2 functions for remove admin
 
     function deleteAdmin($conn, $admin_id) {
         $sqlstr = "DELETE FROM admin WHERE admin_id = '$admin_id'";
-        return $conn->query($sqlstr);
+        $result = $this->conn->query($sqlstr);
+        return $result;
     }
 
     function getAdminIdAndUname($conn) {
         $sqlstr = "SELECT admin_id, uname FROM admin";
-        return $conn->query($sqlstr);
+        $result = $this->conn->query($sqlstr);
+        return $result;
     }
     
     // Retrieve all admin data
     function getAllAdmins($conn) {
         $sqlstr = "SELECT * FROM admin";
-        return $conn->query($sqlstr);
+        $result = $this->conn->query($sqlstr);
+        return $result;
     }
 
     // addEmployee 
@@ -84,15 +98,14 @@ class db {
         return $conn->query($sqlstr);
     }
     function updateEmployee($employee_id, $fname, $lname, $age, $gender, $contact, $email, $address, $section) {
-        $stmt = $this->conn->prepare("UPDATE employee SET fname=?, lname=?, age=?, gender=?, contact=?, email=?, address=?, section=? WHERE employee_id=?");
-        $stmt->bind_param("ssississi", $fname, $lname, $age, $gender, $contact, $email, $address, $section, $employee_id);
-        $result = $stmt->execute();
+        $sqlstr = "UPDATE employee SET fname='$fname', lname='$lname', age=$age, gender='$gender', contact='$contact', email='$email', address='$address', section='$section' WHERE employee_id=$employee_id";
+        $result = $this->conn->query($sqlstr);
         return $result;
     }
-    // Search employee by contact
-    function searchEmployeeByContact($conn, $contact) {
+    
+    function searchEmployeeByContact($contact) {
         $sqlstr = "SELECT * FROM employee WHERE contact = '$contact'";
-        return $conn->query($sqlstr);
+        return $this->conn->query($sqlstr);
     }
 
 
@@ -125,8 +138,10 @@ class db {
 
 
 
-    function closeConn($conn) {
-        $conn->close();
+    public function closeConn() {
+        if ($this->conn != null) {
+            $this->conn->close();
+        }
     }
 }
 

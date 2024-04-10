@@ -2,14 +2,12 @@
 require_once '../model/db.php';
 header('Content-Type: application/json');
 
-$db = new DB();
-$conn = $db->openConn();
+$db = new db(); 
 
 $action = $_POST['action'] ?? '';
-
 if ($action === 'search') {
     $contact = $_POST['contact'] ?? '';
-    $result = $db->searchEmployeeByContact($conn, $contact);
+    $result = $db->searchEmployeeByContact($contact);
 
     if ($result && $result->num_rows > 0) {
         $employee = $result->fetch_assoc();
