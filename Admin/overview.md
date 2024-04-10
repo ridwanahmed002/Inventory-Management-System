@@ -22,6 +22,10 @@ Search employee with contact
 
 ![Screenshot from 2024-04-09 13-42-37](https://github.com/ridwanahmed002/Inventory-Management-System/assets/149960584/de49e757-313a-4d69-b9f0-8d7a3b55d8a6)
 
+Edit Employee Information
+
+![Screenshot from 2024-04-10 13-23-40](https://github.com/ridwanahmed002/Inventory-Management-System/assets/149960584/46ef55b2-e2b3-48e4-9757-d2ec739e86d4)
+
 List warehouse
 
 ![Screenshot from 2024-04-07 15-14-54](https://github.com/ridwanahmed002/Inventory-Management-System/assets/149960584/8c253f86-c63d-415e-8447-4644524e3891)
