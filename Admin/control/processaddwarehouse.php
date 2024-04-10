@@ -2,7 +2,6 @@
 require_once '../model/db.php';
 
 $db = new db();
-$conn = $db->openConn();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $warehouseId = $_POST['warehouse_id'];

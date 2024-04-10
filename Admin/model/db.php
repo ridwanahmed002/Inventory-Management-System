@@ -111,28 +111,28 @@ class db {
 
     // Add warehouse
     function addWarehouse($conn, $warehouse_id, $location, $full_location, $capacity, $no_of_employee) {
-        $sqlstr = "INSERT INTO warehouse (warehouse_id, location, full_location, capacity, no_of_employee) VALUES (?, ?, ?, ?, ?)";
-        $stmt = $conn->prepare($sqlstr);
-        $stmt->bind_param("sssss", $warehouse_id, $location, $full_location, $capacity, $no_of_employee);
-        $result = $stmt->execute();
-        $stmt->close();
+        $sqlstr = "INSERT INTO warehouse (warehouse_id, location, full_location, capacity, no_of_employee) VALUES ('$warehouse_id', '$location', '$full_location', '$capacity', '$no_of_employee')";
+        $result = $this->conn->query($sqlstr);
         return $result;
     }
+    
 
     // Retrieve all warehouse data
     function getAllWarehouse($conn) {
         $sqlstr = "SELECT * FROM warehouse";
-        return $conn->query($sqlstr);
+        $result = $this->conn->query($sqlstr);
+        return $result;
     }
 
     function deleteWarehouse($conn, $warehouse_id) {
         $sqlstr = "DELETE FROM warehouse WHERE warehouse_id = $warehouse_id";
-        return $conn->query($sqlstr);
+        $result = $this->conn->query($sqlstr);
+        return $result;
     }
 
     function getWarehouseIdAndLocation($conn) {
         $sqlstr = "SELECT warehouse_id, full_location FROM warehouse";
-        $result = $conn->query($sqlstr);
+        $result = $this->conn->query($sqlstr);
         return $result;
     }
 
