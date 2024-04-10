@@ -83,13 +83,11 @@ class db {
         $sqlstr = "SELECT employee_id, contact,section FROM employee";
         return $conn->query($sqlstr);
     }
-    function updateEmployee($conn, $employee_id, $fname, $lname, $email, $section, $contact, $age, $gender, $address) {
-        $sql = "UPDATE employee SET fname=?, lname=?, email=?, section=?, contact=?, age=?, gender=?, address=? WHERE employee_id=?";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("sssssisss", $fname, $lname, $email, $section, $contact, $age, $gender, $address, $employee_id);
-        $success = $stmt->execute();
-        $stmt->close();
-        return $success;
+    function updateEmployee($employee_id, $fname, $lname, $age, $gender, $contact, $email, $address, $section) {
+        $stmt = $this->conn->prepare("UPDATE employee SET fname=?, lname=?, age=?, gender=?, contact=?, email=?, address=?, section=? WHERE employee_id=?");
+        $stmt->bind_param("ssississi", $fname, $lname, $age, $gender, $contact, $email, $address, $section, $employee_id);
+        $result = $stmt->execute();
+        return $result;
     }
     // Search employee by contact
     function searchEmployeeByContact($conn, $contact) {
