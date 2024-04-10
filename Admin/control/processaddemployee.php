@@ -3,7 +3,6 @@ session_start();
 require_once '../model/db.php'; 
 
 $db = new db();
-$conn = $db->openConn();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -22,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['error_message'] = 'Invalid email format.';
     } elseif (strlen($contact) != 11) {
         $_SESSION['error_message'] = 'Contact must be 11 digits.';
-    } elseif ($db->contactExists($conn, $contact)) {
+    } elseif ($db->contactExists($contact)) {
         $_SESSION['error_message'] = 'Duplicate contact number.';
     } else {
         $result = $db->addEmployee($conn, $fname, $lname, $age, $gender, $email, $contact, $address, $section);
