@@ -6,7 +6,7 @@ class db {
     private $password = "";
     private $dbname = "Admin";
 
-    private $conn;
+    public $conn;
 
     public function __construct() {
         $this->openConn();
@@ -84,7 +84,7 @@ class db {
     }
 
     function getEmployeeIdAndContact($conn) {
-        $sqlstr = "SELECT employee_id, contact,section FROM employee";
+        $sqlstr = "SELECT employee_id, contact, section FROM employee";
         return $this->conn->query($sqlstr);
     }
     function updateEmployee($employee_id, $fname, $lname, $age, $gender, $contact, $email, $address, $section) {

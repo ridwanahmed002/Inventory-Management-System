@@ -19,7 +19,7 @@
                     <th>Action</th>
                 </tr>
             </thead>
-            <tbody id="employee-list"> </tbody>
+            <tbody id="employee-list"></tbody>
         </table>
         <button onclick="window.location.href='employeemanagement.php';">Back</button>
     </div>

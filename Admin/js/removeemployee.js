@@ -6,11 +6,11 @@ document.addEventListener("DOMContentLoaded", function () {
       data.forEach((employee) => {
         let tr = document.createElement("tr");
         tr.innerHTML = `
-                    <td>${employee.employee_id}</td>
-                    <td>${employee.contact}</td>
-                    <td>${employee.section}</td>
-                    <td><button onclick="confirmRemoval(${employee.employee_id})">Delete</button></td>
-                `;
+          <td>${employee.employee_id}</td>
+          <td>${employee.contact}</td>
+          <td>${employee.section}</td>
+          <td><button onclick="confirmRemoval(${employee.employee_id})">Delete</button></td>
+        `;
         tbody.appendChild(tr);
       });
     })
@@ -19,9 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function confirmRemoval(employeeId) {
   if (confirm("Are you sure you want to remove this employee?")) {
-    fetch(
-      `../control/processremoveemployee.php?action=delete&employee_id=${employeeId}`
-    )
+    fetch(`../control/processremoveemployee.php?action=delete&employee_id=${employeeId}`)
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
