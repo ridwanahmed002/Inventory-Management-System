@@ -18,8 +18,7 @@
                     <th>Action</th>
                 </tr>
             </thead>
-            <tbody id="admin-list">
-            </tbody>
+            <tbody id="admin-list"></tbody>
         </table>
         <button onclick="window.location.href='adminmanagement.php';">Back</button>
     </div>

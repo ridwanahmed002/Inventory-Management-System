@@ -6,10 +6,10 @@ document.addEventListener("DOMContentLoaded", function () {
       data.forEach((admin) => {
         let tr = document.createElement("tr");
         tr.innerHTML = `
-                    <td>${admin.admin_id}</td>
-                    <td>${admin.uname}</td>
-                    <td><button onclick="confirmRemoval(${admin.admin_id})">Delete</button></td>
-                `;
+          <td>${admin.admin_id}</td>
+          <td>${admin.uname}</td>
+          <td><button onclick="confirmRemoval(${admin.admin_id})">Delete</button></td>
+        `;
         tbody.appendChild(tr);
       });
     })
