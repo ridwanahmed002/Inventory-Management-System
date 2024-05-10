@@ -18,9 +18,7 @@
                     <th>Action</th>
                 </tr>
             </thead>
-            <tbody id="warehouse-list">
-                <!-- The list will be populated by removeware.js -->
-            </tbody>
+            <tbody id="warehouse-list"></tbody>
         </table>
         <button onclick="window.location.href='warehousemanagement.php';">Back</button>
     </div>

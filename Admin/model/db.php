@@ -114,7 +114,7 @@ class db {
         $sqlstr = "DELETE FROM warehouse WHERE warehouse_id = $warehouse_id";
         return $this->conn->query($sqlstr);
     }
-
+    
     function getWarehouseIdAndLocation($conn) {
         $sqlstr = "SELECT warehouse_id, full_location FROM warehouse";
         return $this->conn->query($sqlstr);

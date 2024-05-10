@@ -6,10 +6,10 @@ document.addEventListener("DOMContentLoaded", function () {
       data.forEach((warehouse) => {
         let tr = document.createElement("tr");
         tr.innerHTML = `
-                    <td>${warehouse.warehouse_id}</td>
-                    <td>${warehouse.full_location}</td>
-                    <td><button onclick="confirmRemoval(${warehouse.warehouse_id})">Delete</button></td>
-                `;
+          <td>${warehouse.warehouse_id}</td>
+          <td>${warehouse.full_location}</td>
+          <td><button onclick="confirmRemoval(${warehouse.warehouse_id})">Delete</button></td>
+        `;
         tbody.appendChild(tr);
       });
     })
@@ -18,13 +18,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function confirmRemoval(warehouseId) {
   if (confirm("Are you sure you want to remove this warehouse?")) {
-    fetch(
-      `../control/processremoveware.php?action=delete&warehouse_id=${warehouseId}`
-    )
+    fetch(`../control/processremoveware.php?action=delete&warehouse_id=${warehouseId}`)
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
-          window.location.reload();
+          // Remove the row from the table
+          let row = document.querySelector(`button[onclick='confirmRemoval(${warehouseId})']`).parentElement.parentElement;
+          row.parentElement.removeChild(row);
         } else {
           alert("Error: Could not delete the warehouse.");
         }
