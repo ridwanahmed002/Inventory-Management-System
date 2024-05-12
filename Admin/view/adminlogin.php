@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Login</title>
     <link rel="stylesheet" href="../css/adminLogin.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../js/slideshow.js"></script>
 </head>
 
 <body>
@@ -26,6 +28,11 @@
                 </tr>
             </table>
         </form>
+        <div class="slideshow-container">
+            <div class="slideshow">
+                <!-- Texts will be loaded here dynamically -->
+            </div>
+        </div>
     </center>
 </body>
 
