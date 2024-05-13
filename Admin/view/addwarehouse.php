@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>Add Warehouse</title>
     <link rel="stylesheet" href="../css/addwarehouse.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
@@ -13,6 +14,7 @@
         <?php
             if (isset($_GET['success'])) {
                 echo "<p class='message success'>Added Successfully.</p>";
+                echo "<canvas id='locationChart'></canvas>"; // Add canvas for the chart
             } elseif (isset($_GET['error'])) {
                 $errorMessage = $_GET['error'] == "capacity_error" ? "Capacity should be >= 100." : 
                                 ($_GET['error'] == "employee_error" ? "Employee should be greater than 5." : 
