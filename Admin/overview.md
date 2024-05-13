@@ -30,3 +30,6 @@ List warehouse
 
 ![Screenshot from 2024-04-07 15-14-54](https://github.com/ridwanahmed002/Inventory-Management-System/assets/149960584/8c253f86-c63d-415e-8447-4644524e3891)
 
+Add warehouse
+
+![Screenshot 2024-05-13 131644](https://github.com/ridwanahmed002/Inventory-Management-System/assets/149960584/22b16dd0-9478-461b-ad6f-29b99afb7e80)
