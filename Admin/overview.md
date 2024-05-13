@@ -2,9 +2,9 @@ Database
 
 ![Screenshot from 2024-04-07 15-07-18](https://github.com/ridwanahmed002/Inventory-Management-System/assets/149960584/265cf632-3e41-4034-82ef-1412e49e7cd9)
 
-Admin Home
+Admin login
 
-![Screenshot from 2024-04-07 15-08-29](https://github.com/ridwanahmed002/Inventory-Management-System/assets/149960584/4796e7e1-43aa-4eb5-a7b7-3b4dcad49ad5)
+![Screenshot 2024-05-13 132009](https://github.com/ridwanahmed002/Inventory-Management-System/assets/149960584/cbd5ade3-0763-4837-83a9-2b275ee759c9)
 
 Admin Management home
 
