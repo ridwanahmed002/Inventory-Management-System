@@ -3,14 +3,12 @@ class Database {
     private $servername = "localhost";
     private $username = "root";
     private $password = "";
-    private $dbname = "customer"; // Database name
+    private $dbname = "customer"; 
     public $conn;
 
     public function __construct() {
-        // Create connection
         $this->conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
 
-        // Check connection
         if ($this->conn->connect_error) {
             die("Connection failed: " . $this->conn->connect_error);
         }
@@ -35,8 +33,38 @@ class Database {
         $sqlstr = "INSERT INTO cart (username, product_type, quantity, size, address, payment_method) VALUES ('$username', '$productType', '$quantity', '$size', '$address', '$paymentMethod')";
         return $this->conn->query($sqlstr);
     }
+
+    public function getCartItems($username) {
+        $sqlstr = "SELECT * FROM cart WHERE username = '$username'";
+        return $this->conn->query($sqlstr);
+    }
+
+    public function deleteCartItem($id) {
+        $sqlstr = "DELETE FROM cart WHERE id = '$id'";
+        return $this->conn->query($sqlstr);
+    }
+
+    public function updateCartItem($id, $productType, $quantity, $size, $address, $paymentMethod) {
+        $sqlstr = "UPDATE cart SET product_type = '$productType', quantity = '$quantity', size = '$size', address = '$address', payment_method = '$paymentMethod' WHERE id = '$id'";
+        return $this->conn->query($sqlstr);
+    }
+
+    public function saveOrder($username, $productType, $quantity, $size, $address, $paymentMethod, $paymentId) {
+        $sqlstr = "INSERT INTO orders (username, product_type, quantity, size, address, payment_method, payment_id) VALUES ('$username', '$productType', '$quantity', '$size', '$address', '$paymentMethod', '$paymentId')";
+        return $this->conn->query($sqlstr);
+    }
+
+    public function getAllOrders() {
+        $sqlstr = "SELECT * FROM orders";
+        return $this->conn->query($sqlstr);
+    }
+
+    public function getOrdersByProductType($productType) {
+        $sqlstr = "SELECT * FROM orders WHERE product_type = '$productType'";
+        return $this->conn->query($sqlstr);
+    }
 }
 
-// Initialize Database object
+
 $db = new Database();
 ?>

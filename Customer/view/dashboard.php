@@ -20,5 +20,6 @@ if (!isset($_SESSION['username'])) {
         <button onclick="window.location.href='cart.php'">Cart</button>
         <button onclick="window.location.href='history.php'">History</button>
     </div>
+    <button class="back-button" onclick="window.location.href='customer_login.php'">Back</button>
 </body>
 </html>

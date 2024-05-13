@@ -8,7 +8,6 @@ function validateCreateAccountForm() {
     let location = document.getElementById("location").value;
     let isValid = true;
 
-    // Clear previous errors
     document.getElementById("usernameError").innerHTML = "";
     document.getElementById("passwordError").innerHTML = "";
     document.getElementById("emailError").innerHTML = "";

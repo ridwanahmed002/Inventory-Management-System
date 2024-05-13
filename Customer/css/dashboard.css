@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-image: url('../image/background.jpeg');
+    background-image: url('../image/background.jpg');
     background-size: cover;
     margin: 0;
     padding: 0;
@@ -16,7 +16,11 @@ h2 {
     margin-bottom: 20px;
 }
 
-.options button {
+.options {
+    margin-bottom: 20px;
+}
+
+.options button, .back-button {
     background-color: #4CAF50;
     color: white;
     padding: 15px 25px;
@@ -26,6 +30,6 @@ h2 {
     cursor: pointer;
 }
 
-.options button:hover {
+.options button:hover, .back-button:hover {
     background-color: #45a049;
 }

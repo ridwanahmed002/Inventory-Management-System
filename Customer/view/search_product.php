@@ -33,11 +33,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search Product</title>
     <link rel="stylesheet" href="../css/search_product.css">
+    <script src="../js/search_product.js"></script>
 </head>
 <body>
     <div class="search-container">
         <h2>Search Product</h2>
-        <form action="" method="post">
+        <form action="" method="post" onsubmit="return validateSearchForm()">
             <label for="product_type">Type:</label>
             <select id="product_type" name="product_type">
                 <option value="Chair">Chair</option>
@@ -49,6 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <label for="quantity">Quantity:</label>
             <input type="number" id="quantity" name="quantity" min="1"><br>
+            <span id="quantityError"></span><br>
 
             <label for="size">Size:</label>
             <select id="size" name="size">
