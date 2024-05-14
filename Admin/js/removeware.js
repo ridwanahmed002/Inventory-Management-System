@@ -22,7 +22,7 @@ function confirmRemoval(warehouseId) {
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
-          // Remove the row from the table
+
           let row = document.querySelector(`button[onclick='confirmRemoval(${warehouseId})']`).parentElement.parentElement;
           row.parentElement.removeChild(row);
         } else {

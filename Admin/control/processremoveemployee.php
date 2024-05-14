@@ -2,7 +2,7 @@
 require_once '../model/db.php';
 
 $db = new db();
-$conn = $db->conn;  // Ensure the connection is available
+$conn = $db->conn;  
 
 $action = $_GET['action'] ?? '';
 

@@ -20,13 +20,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Check if the chart container is present (indicates successful addition)
   if (document.getElementById('locationChart')) {
     console.log("Canvas element found, fetching data for chart."); // Debugging
     fetch('../control/fetchWarehouseData.php')
       .then(response => response.json())
       .then(data => {
-        console.log(data); // Debugging: Log the fetched data
+        console.log(data); 
         var ctx = document.getElementById('locationChart').getContext('2d');
         new Chart(ctx, {
           type: 'pie',
@@ -53,6 +52,6 @@ document.addEventListener("DOMContentLoaded", function () {
       })
       .catch(error => console.error('Error fetching warehouse data:', error));
   } else {
-    console.log("Canvas element not found."); // Debugging
+    console.log("Canvas element not found."); 
   }
 });

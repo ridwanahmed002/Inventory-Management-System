@@ -14,14 +14,14 @@
 
         <form id="addAdminForm" action="../control/processaddadmin.php" method="post">
             <label for="uname">Username:</label>
-            <input type="text" id="uname" name="uname" required>
+            <input type="text" id="uname" name="uname" >
             <span id="unameError" class="error-message"></span>
 
             <label for="pass">Password:</label>
-            <input type="password" id="pass" name="pass" required>
+            <input type="password" id="pass" name="pass" >
 
             <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
+            <input type="email" id="email" name="email" >
             <span id="emailError" class="error-message"></span>
 
             <input type="submit" value="Proceed">
