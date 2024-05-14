@@ -1,32 +1,25 @@
-// ridwan ahmed arman (windows )
 <?php
+include '../model/db.php';  // Make sure this path correctly points to your db.php
 session_start();
 
-require_once '../model/db.php';
+if (isset($_REQUEST['submit'])) {
+    $uname = $_REQUEST['uname'];
+    $pass = $_REQUEST['pass'];
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $uname = $_POST['uname'];
-    $pass = $_POST['pass'];
-
-    $db = new db();
-
-    $result = $db->loginAdmin($uname, $pass);
-
-    if ($result->num_rows > 0) {
-        $_SESSION['uname'] = $uname;
-        $db->closeConn($conn);
-        header("Location: ../view/adminhome.php");
-        exit();
+    if (empty($uname) || empty($pass)) {
+        echo "Username and Password cannot be empty";  // Simple error message if fields are empty.
     } else {
-        $db->closeConn($conn);
-        echo "<script>
-                alert('Incorrect username or password, please try again.');
-                window.location.href='../view/adminlogin.php';
-              </script>";
-        exit();
+        $db = new db();  // Create a new instance of the database class.
+        $conn = $db->openConn();  // Open the database connection.
+        $result = $db->loginAdmin($conn, $uname, $pass);  // Use the loginAdmin function with the provided credentials.
+
+        if ($result->num_rows == 0) {
+            echo "Invalid credentials";  // Inform user if no matching credentials are found.
+        } else {
+            $_SESSION["username"] = $uname;  // Set session variable on successful login.
+            header("Location: ../view/adminhome.php");  // Redirect to home.php in the view folder.
+        }
+        $db->closeConn();  // Close the database connection.
     }
-} else {
-    header("Location: ../view/adminlogin.php");
-    exit();
 }
 ?>

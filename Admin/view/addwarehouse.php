@@ -14,7 +14,7 @@
         <?php
             if (isset($_GET['success'])) {
                 echo "<p class='message success'>Added Successfully.</p>";
-                echo "<canvas id='locationChart'></canvas>"; // Add canvas for the chart
+                echo "<canvas id='locationChart'></canvas>"; 
             } elseif (isset($_GET['error'])) {
                 $errorMessage = $_GET['error'] == "capacity_error" ? "Capacity should be >= 100." : 
                                 ($_GET['error'] == "employee_error" ? "Employee should be greater than 5." : 

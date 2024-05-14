@@ -1,39 +1,18 @@
+<?php
+include '../control/adminlogincheck.php'; // Include the login control, make sure this path is correct as per your structure
+?>
+
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Login</title>
-    <link rel="stylesheet" href="../css/adminLogin.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="../js/slideshow.js"></script>
+    <title>Login</title>
+    <link rel="stylesheet" href="../css/adminLogin.css"> <!-- Link to the CSS file, assuming correct path -->
 </head>
-
 <body>
-    <center>
-        <form action="../control/adminlogincheck.php" method="post">
-            <table>
-                <tr>
-                    <td>Username:</td>
-                    <td><input type="text" name="uname"></td>
-                </tr>
-                <tr>
-                    <td>Password:</td>
-                    <td><input type="password" name="pass"></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td><input type="submit" value="Login"></td>
-                </tr>
-            </table>
-        </form>
-        <div class="slideshow-container">
-            <div class="slideshow">
-                <!-- Texts will be loaded here dynamically -->
-            </div>
-        </div>
-    </center>
+    <form method="POST" action="">
+        Username: <input type="text" name="uname" />
+        Password: <input type="password" name="pass" />
+        <input type="submit" name="submit" value="Login" />
+    </form>
 </body>
-
 </html>
