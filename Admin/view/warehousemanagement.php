@@ -1,22 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <title>Warehouse Management</title>
-    <link rel="stylesheet" href="../css/warehouse.css">
+    <link rel="stylesheet" href="../css/adminHome.css"> 
 </head>
-
 <body>
-    <div class="container">
-        <h2>Warehouse Management</h2>
-        <div class="buttons">
-            <button onclick="window.location='addwarehouse.php';">Add Warehouse</button>
-            <button onclick="window.location='listwarehouse.php';">List Warehouses</button>
-            <button onclick="window.location='removeware.php';">Remove Warehouse</button>
-            <button class="back-button" onclick="window.location='adminhome.php';">Back</button>
-        </div>
-    </div>
+    <h1>Warehouse Management</h1>
+    <ul>
+        <li><a href="addwarehouse.php">Add Warehouse</a></li>
+        <li><a href="listwarehouse.php">List Warehouses</a></li>
+        <li><a href="removeware.php">Remove Warehouse</a></li>
+    </ul>
+    <a href="adminhome.php" class="back-button">Back</a>
 </body>
-
 </html>

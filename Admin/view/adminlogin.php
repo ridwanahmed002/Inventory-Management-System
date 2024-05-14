@@ -1,12 +1,12 @@
 <?php
-include '../control/adminlogincheck.php'; // Include the login control, make sure this path is correct as per your structure
+include '../control/adminlogincheck.php'; 
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
     <title>Login</title>
-    <link rel="stylesheet" href="../css/adminLogin.css"> <!-- Link to the CSS file, assuming correct path -->
+    <link rel="stylesheet" href="../css/adminLogin.css">
 </head>
 <body>
     <form method="POST" action="">

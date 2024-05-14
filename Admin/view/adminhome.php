@@ -1,23 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
 
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="../css/adminHome.css">
 </head>
-
 <body>
-    <div class="dashboard-container">
-        <h2>Admin Dashboard</h2>
-        <ul>
-            <li><a href="adminmanagement.php">Admin Management</a></li>
-            <li><a href="warehousemanagement.php">Warehouse Management</a></li>
-            <li><a href="employeemanagement.php">Employee Management</a></li>
-        </ul>
-        <a href="adminlogin.php" class="back-button">Log Out</a>
-    </div>
+    <h1>Admin Dashboard</h1>
+    <link rel="stylesheet" href="../css/adminhome.css">
+    <ul>
+        <li><a href="adminmanagement.php">Admin Management</a></li>
+        <li><a href="warehousemanagement.php">Warehouse Management</a></li>
+        <li><a href="employeemanagement.php">Employee Management</a></li>
+    </ul>
+    <a href="adminlogin.php" class="back-button">Log Out</a>
 </body>
-
 </html>
