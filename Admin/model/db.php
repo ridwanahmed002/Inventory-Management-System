@@ -115,10 +115,5 @@ class db {
         return $result;
     }
 
-    function closeConn() {
-        if ($this->conn != null) {
-            $this->conn->close();
-        }
-    }
 }
 ?>

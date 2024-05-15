@@ -5,22 +5,24 @@ html {
   font-family: Arial, sans-serif;
   background: url("../image/admin_background.svg") no-repeat center center fixed;
   background-size: cover;
-  height: 100%;
+  height: 100vh; /* Set to 100vh for full height */
 }
 
 .container {
   position: absolute;
-  right: 10%;
+  right: 5%; /* Shifted closer to the right side */
   top: 50%;
   transform: translateY(-50%);
-  width: 50%;
+  width: 40%; /* Narrower width to shift further right */
   max-width: 600px;
   background-color: rgba(255, 255, 255, 0.8);
-  padding: 20px;
+  padding: 10px; /* Reduced padding */
   border-radius: 5px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center; /* Ensures text and headers are centered */
 }
-.container h2 {
+
+h1, h2 { /* Updated to include h1 for consistency */
   color: #4caf50;
   font-size: 24px;
   text-align: center;
@@ -29,13 +31,13 @@ html {
 table {
   width: 100%;
   border-collapse: collapse;
+  margin-top: 20px; /* Added space above the table */
   margin-bottom: 20px;
 }
 
-th,
-td {
+th, td {
   border: 1px solid #ddd;
-  padding: 8px;
+  padding: 4px; /* Reduced padding for smaller rows */
   text-align: left;
 }
 
@@ -48,7 +50,7 @@ tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 
-button {
+a.back-button, button { /* Consolidated button and back-button styles */
   padding: 10px;
   background-color: #f44336;
   color: white;
@@ -57,8 +59,10 @@ button {
   cursor: pointer;
   display: block;
   width: 100%;
+  text-decoration: none; /* Remove underline from links */
+  text-align: center; /* Center text in buttons */
 }
 
-button:hover {
+a.back-button:hover, button:hover {
   opacity: 0.8;
 }
