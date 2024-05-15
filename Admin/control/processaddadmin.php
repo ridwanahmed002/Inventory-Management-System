@@ -1,31 +1,21 @@
 <?php
-session_start();
-require_once '../model/db.php';
+include '../model/db.php';
 
-$db = new db();
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $uname = $_POST['uname'];
-    $pass = password_hash($_POST['pass'], PASSWORD_DEFAULT); 
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['username'], $_POST['password'], $_POST['email'])) {
+    $username = $_POST['username'];
+    $password = $_POST['password']; // Consider hashing the password before storing it
     $email = $_POST['email'];
 
-    $userCheck = $db->query("SELECT uname FROM admin WHERE uname = '$uname'");
-    if ($userCheck->num_rows > 0) {
+    $db = new db();
+    $conn = $db->openConn();
+    $result = $db->addAdmin($conn, $username, $password, $email);
 
-        $_SESSION['error_message'] = 'Duplicate username.';
-        header("Location: ../view/addadmin.php");
-        exit();
-    }
-
-    $result = $db->addAdmin($conn, $uname, $pass, $email);
     if ($result) {
-        setcookie('admin_added', 'true', time() + 10, '/');
-        $_SESSION['success_message'] = 'Admin added successfully!';
+        echo "New admin added successfully.";
     } else {
-        $_SESSION['error_message'] = 'There was a problem adding the admin.';
+        echo "Failed to add new admin.";
     }
-    $db->closeConn($conn);
-    header("Location: ../view/addadmin.php");
-    exit();
+} else {
+    echo "All fields are required.";
 }
 ?>

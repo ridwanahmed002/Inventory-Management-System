@@ -1,50 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <title>Add Admin</title>
-    <link rel="stylesheet" href="../css/addadmin.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <link rel="stylesheet" href="../css/addadmin.css"> 
 </head>
-
 <body>
-    <div class="form-container">
-
-        <form id="addAdminForm" action="../control/processaddadmin.php" method="post">
-            <label for="uname">Username:</label>
-            <input type="text" id="uname" name="uname" >
-            <span id="unameError" class="error-message"></span>
-
-            <label for="pass">Password:</label>
-            <input type="password" id="pass" name="pass" >
-
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" >
-            <span id="emailError" class="error-message"></span>
-
-            <input type="submit" value="Proceed">
-            <input type="reset" value="Reset">
-            <button type="button" onclick="window.location.href='adminmanagement.php'">Back</button>
+    <div class="container">
+        <h1>Add New Admin</h1>
+        <form id="addAdminForm" onsubmit="return validateForm()">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username">
+                <div id="usernameError" class="form-error"></div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password">
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email">
+                <div id="emailError" class="form-error"></div>
+            </div>
+            <button type="submit">Add Admin</button>
         </form>
-        <div id="successMessage" class="alert alert-success" style="display:none;">
-            Admin added successfully!
-        </div>
+        <a href="adminmanagement.php" class="back-button">Back</a>
     </div>
-    <script>
-    $(document).ready(function() {
-        if ($.cookie('admin_added')) {
-
-            $('#successMessage').show();
-
-            $.removeCookie('admin_added', {
-                path: '/'
-            });
-        }
-    });
-    </script>
     <script src="../js/addadmin.js"></script>
 </body>
-
 </html>

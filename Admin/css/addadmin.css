@@ -1,85 +1,93 @@
+/* General body styling */
 body {
-  font-family: "Arial", sans-serif;
-  margin: 0;
-  padding: 0;
-  background-image: url("../image/admin_background.svg");
+  font-family: 'Arial', sans-serif;
+  background: url("../image/admin_background.svg") no-repeat center center fixed;
   background-size: cover;
-  background-position: center;
-  height: 100vh;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  text-align: center;
-  padding-right: 300px;
-}
-
-.form-container {
-  background: #e5dcb8;
+  background-color: #f4f4f4;
+  margin: 0;
   padding: 20px;
-  border-radius: 10px;
-  width: 100%;
-  max-width: 400px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
+/* Styling for the form container */
+.container {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  width: 350px;
+}
+
+/* Header styling within the container */
+h1 {
+  color: #333;
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Form group styling for input grouping */
+.form-group {
+  margin-bottom: 15px;
+}
+
+/* Input and Label styling */
 label {
   display: block;
-  text-align: left;
-  margin: 10px 0 5px 0;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555;
 }
 
 input[type="text"],
 input[type="password"],
-input[type="email"],
-input[type="submit"],
-input[type="reset"],
-button {
-  width: calc(100% - 20px);
-  padding: 10px;
-  margin-bottom: 15px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+input[type="email"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box; /* Includes padding in width and height */
 }
 
-input[type="submit"],
-input[type="reset"],
+/* Button styling */
 button {
-  background-color: #4caf50;
+  width: 100%;
+  padding: 10px;
+  background-color: #4CAF50;
   color: white;
   border: none;
+  border-radius: 4px;
   cursor: pointer;
+  margin-top: 10px;
 }
 
-input[type="submit"]:hover,
-input[type="reset"]:hover,
 button:hover {
   background-color: #45a049;
 }
 
-.error-message {
-  color: red;
-  font-size: 0.9em;
-}
-
-.success-message {
-  color: green;
-  font-size: 0.9em;
-}
-
-.error-message.inline-error {
+/* Back button styling */
+.back-button {
   display: block;
-  margin-top: -10px;
-  margin-bottom: 10px;
-}
-.alert {
-  padding: 15px;
-  margin-bottom: 20px;
-  border: 1px solid transparent;
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+  background-color: #f44336;
+  color: white;
+  text-decoration: none;
   border-radius: 4px;
+  margin-top: 10px;
 }
 
-.alert-success {
-  color: #3c763d;
-  background-color: #dff0d8;
-  border-color: #d6e9c6;
+.back-button:hover {
+  background-color: #c0392b;
+}
+
+/* Error message styling */
+.form-error {
+  color: #d9534f;
+  font-size: 0.875em;
+  margin-top: 5px;
 }
