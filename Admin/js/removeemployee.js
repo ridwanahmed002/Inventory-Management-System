@@ -1,33 +1,14 @@
-document.addEventListener("DOMContentLoaded", function () {
-  fetch("../control/processremoveemployee.php?action=list")
-    .then((response) => response.json())
-    .then((data) => {
-      let tbody = document.getElementById("employee-list");
-      data.forEach((employee) => {
-        let tr = document.createElement("tr");
-        tr.innerHTML = `
-          <td>${employee.employee_id}</td>
-          <td>${employee.contact}</td>
-          <td>${employee.section}</td>
-          <td><button onclick="confirmRemoval(${employee.employee_id})">Delete</button></td>
-        `;
-        tbody.appendChild(tr);
-      });
-    })
-    .catch((error) => console.error("Error:", error));
-});
+function removeEmployee() {
+  var employeeId = document.getElementById('employeeId').value;
+  var formData = new FormData();
+  formData.append('employeeId', employeeId);
 
-function confirmRemoval(employeeId) {
-  if (confirm("Are you sure you want to remove this employee?")) {
-    fetch(`../control/processremoveemployee.php?action=delete&employee_id=${employeeId}`)
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.success) {
-          window.location.reload();
-        } else {
-          alert("Error: Could not delete the employee.");
-        }
-      })
-      .catch((error) => console.error("Error:", error));
-  }
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', '../control/processremoveemployee.php', true);
+  xhr.onreadystatechange = function() {
+      if (this.readyState === 4 && this.status === 200) {
+          document.getElementById('message').innerHTML = this.responseText;
+      }
+  };
+  xhr.send(formData);
 }

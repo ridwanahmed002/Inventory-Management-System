@@ -1,34 +1,14 @@
-document.addEventListener("DOMContentLoaded", function () {
-  fetch("../control/processremoveware.php?action=list")
-    .then((response) => response.json())
-    .then((data) => {
-      let tbody = document.getElementById("warehouse-list");
-      data.forEach((warehouse) => {
-        let tr = document.createElement("tr");
-        tr.innerHTML = `
-          <td>${warehouse.warehouse_id}</td>
-          <td>${warehouse.full_location}</td>
-          <td><button onclick="confirmRemoval(${warehouse.warehouse_id})">Delete</button></td>
-        `;
-        tbody.appendChild(tr);
-      });
-    })
-    .catch((error) => console.error("Error:", error));
-});
+function removeWarehouse() {
+  var warehouseId = document.getElementById('warehouseId').value;
+  var formData = new FormData();
+  formData.append('warehouseId', warehouseId);
 
-function confirmRemoval(warehouseId) {
-  if (confirm("Are you sure you want to remove this warehouse?")) {
-    fetch(`../control/processremoveware.php?action=delete&warehouse_id=${warehouseId}`)
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.success) {
-
-          let row = document.querySelector(`button[onclick='confirmRemoval(${warehouseId})']`).parentElement.parentElement;
-          row.parentElement.removeChild(row);
-        } else {
-          alert("Error: Could not delete the warehouse.");
-        }
-      })
-      .catch((error) => console.error("Error:", error));
-  }
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', '../control/processremoveware.php', true);
+  xhr.onreadystatechange = function() {
+      if (this.readyState === 4 && this.status === 200) {
+          document.getElementById('message').innerHTML = this.responseText;
+      }
+  };
+  xhr.send(formData);
 }

@@ -1,28 +1,21 @@
 <?php
-require_once '../model/db.php';
+include '../model/db.php';
 
-$db = new db();
-$conn = $db->conn; 
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['adminId'])) {
+    $adminId = $_POST['adminId'];
+    $db = new db();
+    $conn = $db->openConn();
 
-$action = $_GET['action'] ?? '';
-
-if ($action == 'list') {
-    header('Content-Type: application/json');
-    $result = $db->getAdminIdAndUname($conn);
+    $result = $db->deleteAdmin($conn, $adminId);
     
-    if ($result) {
-        $admins = $result->fetch_all(MYSQLI_ASSOC);
-        echo json_encode($admins);
+
+    if ($conn->affected_rows > 0) {
+        echo "Admin successfully removed.";
     } else {
-        echo json_encode([]);
+        echo "No admin found with ID: $adminId";
     }
-    
-} elseif ($action == 'delete' && isset($_GET['admin_id'])) {
-    header('Content-Type: application/json');
-    $adminId = $_GET['admin_id'];
-    $success = $db->deleteAdmin($conn, $adminId);
-    echo json_encode(['success' => $success]);
-}
 
-$db->closeConn();
+} else {
+    echo "No admin ID provided.";
+}
 ?>

@@ -1,28 +1,18 @@
 <?php
-require_once '../model/db.php';
+include '../model/db.php';
 
-$db = new db();
-$conn = $db->conn;  
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['warehouseId'])) {
+    $warehouseId = $_POST['warehouseId'];
+    $db = new db();
+    $conn = $db->openConn();
+    $result = $db->deleteWarehouse($conn, $warehouseId);
 
-$action = $_GET['action'] ?? '';
-
-if ($action == 'list') {
-    header('Content-Type: application/json');
-    $result = $db->getWarehouseIdAndLocation($conn);
-    
-    if ($result) {
-        $warehouses = $result->fetch_all(MYSQLI_ASSOC);
-        echo json_encode($warehouses);
+    if ($result && $conn->affected_rows > 0) {
+        echo "Warehouse successfully deleted.";
     } else {
-        echo json_encode([]);
+        echo "Failed to delete warehouse or warehouse not found.";
     }
-    
-} elseif ($action == 'delete' && isset($_GET['warehouse_id'])) {
-    header('Content-Type: application/json');
-    $warehouseId = $_GET['warehouse_id'];
-    $success = $db->deleteWarehouse($conn, $warehouseId);
-    echo json_encode(['success' => (bool)$success]);
+} else {
+    echo "No warehouse ID provided.";
 }
-
-$db->closeConn();
 ?>

@@ -1,0 +1,87 @@
+/* General body styling */
+body {
+  font-family: 'Arial', sans-serif;
+  background: url("../image/admin_background.svg") no-repeat center center fixed;
+  background-size: cover;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+/* Container for form and other elements */
+.container {
+  width: 300px;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  border-radius: 5px;
+}
+
+/* Styling for headers */
+h1 {
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Styling for form groups */
+.form-group {
+  margin-bottom: 20px;
+}
+
+/* Input field styling */
+input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Button group styling */
+.button-group {
+  display: flex;
+  justify-content: space-between; /* Space between buttons */
+}
+
+/* Button styling */
+button, .back-button {
+  flex: 1; /* Each button takes equal space */
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 4px;
+  margin-right: 5px; /* Space between buttons */
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+.back-button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+}
+
+.back-button:hover {
+  background-color: #c0392b;
+}
+
+/* Message display styling */
+#message {
+  text-align: center;
+  margin-top: 20px;
+  color: #888;
+}

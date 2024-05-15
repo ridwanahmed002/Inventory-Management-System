@@ -1,32 +1,14 @@
-document.addEventListener("DOMContentLoaded", function () {
-  fetch("../control/processremoveadmin.php?action=list")
-    .then((response) => response.json())
-    .then((data) => {
-      let tbody = document.getElementById("admin-list");
-      data.forEach((admin) => {
-        let tr = document.createElement("tr");
-        tr.innerHTML = `
-          <td>${admin.admin_id}</td>
-          <td>${admin.uname}</td>
-          <td><button onclick="confirmRemoval(${admin.admin_id})">Delete</button></td>
-        `;
-        tbody.appendChild(tr);
-      });
-    })
-    .catch((error) => console.error("Error:", error));
-});
+function removeAdmin() {
+  var adminId = document.getElementById('adminId').value;
+  var formData = new FormData();
+  formData.append('adminId', adminId);
 
-function confirmRemoval(adminId) {
-  if (confirm("Are you sure you want to remove this admin?")) {
-    fetch(`../control/processremoveadmin.php?action=delete&admin_id=${adminId}`)
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.success) {
-          window.location.reload();
-        } else {
-          alert("Error: Could not delete the admin.");
-        }
-      })
-      .catch((error) => console.error("Error:", error));
-  }
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', '../control/processremoveadmin.php', true);
+  xhr.onreadystatechange = function() {
+      if (this.readyState === 4 && this.status === 200) {
+          document.getElementById('message').innerHTML = this.responseText;
+      }
+  };
+  xhr.send(formData);
 }

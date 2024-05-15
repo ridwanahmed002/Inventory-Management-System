@@ -1,28 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <title>Remove Admin</title>
-    <link rel="stylesheet" href="../css/removeadmin.css">
+    <link rel="stylesheet" href="../css/remove.css">
 </head>
-
 <body>
     <div class="container">
-        <h2>Remove Admin</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Admin ID</th>
-                    <th>Username</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody id="admin-list"></tbody>
-        </table>
-        <button onclick="window.location.href='adminmanagement.php';">Back</button>
+        <h1>Remove Admin</h1>
+        <div class="form-group">
+            <label for="adminId">Admin ID:</label>
+            <input type="text" id="adminId" name="adminId">
+        </div>
+        <div class="button-group">
+            <button type="button" onclick="removeAdmin()">Remove Admin</button>
+            <a href="adminmanagement.php" class="back-button">Back</a>
+        </div>
+        <div id="message"></div>
     </div>
     <script src="../js/removeadmin.js"></script>
 </body>
-
 </html>

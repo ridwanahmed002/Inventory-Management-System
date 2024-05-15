@@ -1,28 +1,18 @@
 <?php
-require_once '../model/db.php';
+include '../model/db.php';
 
-$db = new db();
-$conn = $db->conn;  
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['employeeId'])) {
+    $employeeId = $_POST['employeeId'];
+    $db = new db();
+    $conn = $db->openConn();
+    $result = $db->deleteEmployee($conn, $employeeId);
 
-$action = $_GET['action'] ?? '';
-
-if ($action == 'list') {
-    header('Content-Type: application/json');
-    $result = $db->getEmployeeIdAndContact($conn);
-    
-    if ($result) {
-        $employees = $result->fetch_all(MYSQLI_ASSOC);
-        echo json_encode($employees);
+    if ($result && $conn->affected_rows > 0) {
+        echo "Employee successfully deleted.";
     } else {
-        echo json_encode([]);
+        echo "Failed to delete employee or employee not found.";
     }
-    
-} elseif ($action == 'delete' && isset($_GET['employee_id'])) {
-    header('Content-Type: application/json');
-    $employeeId = $_GET['employee_id'];
-    $success = $db->deleteEmployee($conn, $employeeId);
-    echo json_encode(['success' => $success]);
+} else {
+    echo "No employee ID provided.";
 }
-
-$db->closeConn();
 ?>
