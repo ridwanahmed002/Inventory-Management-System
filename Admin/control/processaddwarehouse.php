@@ -1,36 +1,49 @@
 <?php
-require_once '../model/db.php';
+include '../model/db.php';
 
-$db = new db();
-$conn = $db->conn;
+$warehouse_id = $location = $full_location = "";
+$capacity = $no_of_employee = 0;
+$hasError = 0;
+$errorMsg = "";
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $warehouseId = $_POST['warehouse_id'];
-    $fullLocation = $_POST['full_location'];
-    $capacity = $_POST['total_capacity'];
-    $noOfEmployees = $_POST['no_of_employees'];
-    $location = $_POST['location'];
+if(isset($_REQUEST['submit'])){
+    $db = new db();
+    $conn = $db->openConn();
 
-    if ($capacity < 100 || $noOfEmployees < 5) {
-        $error = $capacity < 100 ? "capacity_error" : "employee_error";
-        header("Location: ../view/addwarehouse.php?error=$error");
-        exit();
-    } else {
-       
-        error_log("Warehouse ID: $warehouseId, Full Location: $fullLocation, Capacity: $capacity, No. of Employees: $noOfEmployees, Location: $location");
+    $warehouse_id = isset($_REQUEST['warehouse_id']) ? $_REQUEST['warehouse_id'] : '';
+    $location = isset($_REQUEST['location']) ? $_REQUEST['location'] : '';
+    $full_location = isset($_REQUEST['full_location']) ? $_REQUEST['full_location'] : '';
+    $capacity = isset($_REQUEST['capacity']) ? $_REQUEST['capacity'] : 0;
+    $no_of_employee = isset($_REQUEST['no_of_employee']) ? $_REQUEST['no_of_employee'] : 0;
 
- 
-        $result = $db->addWarehouse($conn, $warehouseId, $location, $fullLocation, $capacity, $noOfEmployees);
+    // Validate fields
+    if (empty($warehouse_id)) {
+        $hasError = 1;
+        $errorMsg .= "Warehouse ID is required.\\n";
+    }
+    if (empty($full_location)) {
+        $hasError = 1;
+        $errorMsg .= "Full location is required.\\n";
+    }
+    if ($capacity < 50) {
+        $hasError = 1;
+        $errorMsg .= "Capacity must be at least 50.\\n";
+    }
+    if ($no_of_employee < 5) {
+        $hasError = 1;
+        $errorMsg .= "Number of employees must be at least 5.\\n";
+    }
 
-        if ($result) {
-            header("Location: ../view/addwarehouse.php?success=1");
+    if($hasError != 1){
+        $result = $db->addWarehouse($conn, $warehouse_id, $location, $full_location, $capacity, $no_of_employee);
+
+        if($result === TRUE){
+            echo "Successfully Added";
         } else {
-            error_log("Database insertion failed: " . $conn->error); 
-            header("Location: ../view/addwarehouse.php?error=general");
+            echo "Error Occurred: " . $conn->error;
         }
-        exit();
+    } else {
+        echo "Please complete the validation: " . $errorMsg;
     }
 }
-
-$db->closeConn();
 ?>

@@ -86,9 +86,37 @@ class db {
     }
 
     function searchEmployeeByContact($conn, $contact) {
-        $sql = "SELECT * FROM employee WHERE contact = '$contact'";
-        $result = $conn->query($sql);
-        return $result;
+        $sql = "SELECT employee_id, fname, lname, age, gender, email, contact, address, section FROM employee WHERE contact = ?";
+        $stmt = $conn->prepare($sql);
+        if (!$stmt) {
+            die('MySQL prepare error: ' . $conn->error);
+        }
+    
+        $stmt->bind_param("s", $contact);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows > 0) {
+            return $result;
+        } else {
+            return null; 
+        }
+    }
+
+    function getEmployeeById($conn, $employee_id) {
+        $sql = "SELECT employee_id, fname, lname, age, gender, email, contact, address, section FROM employee WHERE employee_id = ?";
+        if ($stmt = $conn->prepare($sql)) {
+            $stmt->bind_param("i", $employee_id); // 'i' denotes that the parameter is an integer
+            $stmt->execute();
+            $result = $stmt->get_result();
+            if ($result->num_rows === 1) {
+                return $result->fetch_assoc(); // fetches the result as an associative array
+            } else {
+                return null; // No record found, or more than one record was unexpectedly found
+            }
+        } else {
+            error_log("Error in preparing statement: " . $conn->error);
+            return null; // Return null if the preparation fails
+        }
     }
 
     function addWarehouse($conn, $warehouse_id, $location, $full_location, $capacity, $no_of_employee) {

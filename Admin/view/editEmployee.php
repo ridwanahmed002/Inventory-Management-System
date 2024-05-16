@@ -1,35 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <title>Edit Employee</title>
-    <link rel="stylesheet" href="../css/editEmployee.css">
 </head>
-
 <body>
-    <div>
-        <form id="searchEmployeeForm">
-            <input type="text" id="contactSearch" name="contact" placeholder="Enter Contact Number" required>
-            <input type="submit" value="Search">
-        </form>
-    </div>
-    <div id="editFormContainer" style="display:none;">
-        <h2>Edit Employee Details</h2>
-        <form id="editEmployeeForm">
-            <input type="hidden" id="employee_id" name="employee_id">
-            First Name: <input type="text" id="fname" name="fname"><br>
-            Last Name: <input type="text" id="lname" name="lname"><br>
-            Email: <input type="email" id="email" name="email"><br>
-            Section: <input type="text" id="section" name="section"><br>
-            Contact: <input type="text" id="contact" name="contact"><br>
-            Age: <input type="number" id="age" name="age"><br>
-            Gender: <input type="text" id="gender" name="gender"><br>
-            Address: <input type="text" id="address" name="address"><br>
-            <button type="submit">Update Employee</button>
-        </form>
-    </div>
-    <script src="../js/editEmployee.js"></script>
-</body>
+<?php
+include '../model/db.php';
+$db = new db();
+$conn = $db->openConn();
 
+$employee_id = isset($_GET['employee_id']) ? $_GET['employee_id'] : 0;
+$employee = $db->getEmployeeById($conn, $employee_id);
+
+if ($employee) {
+    // Extract all fields as variables
+    $fname = $employee['fname'];
+    $lname = $employee['lname'];
+    $age = $employee['age'];
+    $gender = $employee['gender'];
+    $email = $employee['email'];
+    $contact = $employee['contact'];
+    $address = $employee['address'];
+    $section = $employee['section'];
+} else {
+    echo "Employee not found.";
+    return; // Stop further execution if no employee is found
+}
+?>
+    <h1>Edit Employee</h1>
+    <form method="POST" action="../control/processeditEmployee.php">
+        <input type="hidden" name="employee_id" value="<?php echo $employee_id; ?>">
+        <label>First Name:<input type="text" name="fname" value="<?php echo $fname; ?>"></label><br>
+        <label>Last Name:<input type="text" name="lname" value="<?php echo $lname; ?>"></label><br>
+        <label>Age:<input type="number" name="age" value="<?php echo $age; ?>"></label><br>
+        <label>Gender:
+            <select name="gender">
+                <option value="Male" <?php if ($gender == "Male") echo "selected"; ?>>Male</option>
+                <option value="Female" <?php if ($gender == "Female") echo "selected"; ?>>Female</option>
+            </select>
+        </label><br>
+        <label>Email:<input type="email" name="email" value="<?php echo $email; ?>"></label><br>
+        <label>Contact:<input type="text" name="contact" value="<?php echo $contact; ?>"></label><br>
+        <label>Address:<input type="text" name="address" value="<?php echo $address; ?>"></label><br>
+        <label>Section:<input type="text" name="section" value="<?php echo $section; ?>"></label><br>
+        <input type="submit" name="update" value="Update">
+    </form>
+</body>
 </html>

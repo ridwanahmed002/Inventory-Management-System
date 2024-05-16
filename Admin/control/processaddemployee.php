@@ -1,40 +1,55 @@
 <?php
-session_start();
-require_once '../model/db.php'; 
+include '../model/db.php';
 
-$db = new db();
+$fname = $lname = $email = $contact = $address = $section = "";
+$age = 0;
+$gender = "";
+$hasError = 0;
+$errorMsg = "";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if(isset($_REQUEST['submit'])){
+    $db = new db();
+    $conn = $db->openConn();
 
-    $fname = trim($_POST['fname']);
-    $lname = trim($_POST['lname']);
-    $age = $_POST['age'];
-    $gender = $_POST['gender'];
-    $contact = trim($_POST['contact']);
-    $email = trim($_POST['email']);
-    $address = trim($_POST['address']);
-    $section = $_POST['section'];
+    $fname = isset($_REQUEST['fname']) ? $_REQUEST['fname'] : '';
+    $lname = isset($_REQUEST['lname']) ? $_REQUEST['lname'] : '';
+    $age = isset($_REQUEST['age']) ? $_REQUEST['age'] : 0;
+    $gender = isset($_REQUEST['gender']) ? $_REQUEST['gender'] : '';
+    $email = isset($_REQUEST['email']) ? $_REQUEST['email'] : '';
+    $contact = isset($_REQUEST['contact']) ? $_REQUEST['contact'] : '';
+    $address = isset($_REQUEST['address']) ? $_REQUEST['address'] : '';
+    $section = isset($_REQUEST['section']) ? $_REQUEST['section'] : '';
 
-    if ($age < 18) {
-        $_SESSION['error_message'] = 'Age must be at least 18.';
-    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $_SESSION['error_message'] = 'Invalid email format.';
-    } elseif (strlen($contact) != 11) {
-        $_SESSION['error_message'] = 'Contact must be 11 digits.';
-    } elseif ($db->contactExists($contact)) {
-        $_SESSION['error_message'] = 'Duplicate contact number.';
-    } else {
-        $result = $db->addEmployee($conn, $fname, $lname, $age, $gender, $email, $contact, $address, $section);
-        if ($result) {
-            $_SESSION['success_message'] = 'Employee added successfully!';
-        } else {
-            $_SESSION['error_message'] = 'There was a problem adding the employee.';
-        }
+    if (empty($fname) || empty($lname)) {
+        $hasError = 1;
+        $errorMsg .= "First and last names are required. ";
+    }
+    if (empty($email)) {
+        $hasError = 1;
+        $errorMsg .= "Email is required. ";
+    } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $hasError = 1;
+        $errorMsg .= "Please enter a valid email address. ";
+    }
+    if ($age <= 17) {
+        $hasError = 1;
+        $errorMsg .= "Age must be greater than 17. ";
+    }
+    if (empty($contact)) {
+        $hasError = 1;
+        $errorMsg .= "Contact is required. ";
     }
 
-    header("Location: ../view/addemployee.php");
-    exit();
-}
+    if($hasError != 1){
+        $result = $db->addEmployee($conn, $fname, $lname, $age, $gender, $email, $contact, $address, $section);
+        if($result === TRUE){
+            echo "Successfully Added";
+        } else {
+            echo "Error Occurred: " . $conn->error;
+        }
+    } else {
+        echo "Please complete the validation: " . $errorMsg;
+    }
 
-$db->closeConn();
+}
 ?>

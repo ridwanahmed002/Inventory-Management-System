@@ -1,45 +1,25 @@
 <?php
-require_once '../model/db.php';
-header('Content-Type: application/json');
+include '../model/db.php';
+$db = new db();
+$conn = $db->openConn();
 
-$db = new db(); 
+if (isset($_POST['update'])) {
+    $employee_id = $_POST['employee_id'];
+    $fname = $_POST['fname'];
+    $lname = $_POST['lname'];
+    $age = $_POST['age'];
+    $gender = $_POST['gender'];
+    $email = $_POST['email'];
+    $contact = $_POST['contact'];
+    $address = $_POST['address'];
+    $section = $_POST['section'];
 
-$action = $_POST['action'] ?? '';
-if ($action === 'search') {
-    $contact = $_POST['contact'] ?? '';
-    $result = $db->searchEmployeeByContact($contact);
-
-    if ($result && $result->num_rows > 0) {
-        $employee = $result->fetch_assoc();
-        echo json_encode(['success' => true, 'employee' => $employee]);
-        exit;
-    } else {
-        echo json_encode(['success' => false, 'message' => 'No employee found with that contact number.']);
-        exit;
-    }
-} elseif ($action === 'update') {
-    $employee_id = $_POST['employee_id'] ?? '';
-    $fname = $_POST['fname'] ?? '';
-    $lname = $_POST['lname'] ?? '';
-    $email = $_POST['email'] ?? '';
-    $section = $_POST['section'] ?? '';
-    $contact = $_POST['contact'] ?? '';
-    $age = $_POST['age'] ?? '';
-    $gender = $_POST['gender'] ?? '';
-    $address = $_POST['address'] ?? '';
-
-    $result = $db->updateEmployee($employee_id, $fname, $lname, $age, $gender, $contact, $email, $address, $section);
-
+    $result = $db->updateEmployee($conn, $employee_id, $fname, $lname, $age, $gender, $email, $contact, $address, $section);
     if ($result) {
-        echo json_encode(['success' => true, 'message' => 'Employee updated successfully.']);
-        exit; 
+        echo "<script>alert('Employee updated successfully.'); window.location.href='../view/employeeManagement.php';</script>";
     } else {
-        echo json_encode(['success' => false, 'message' => 'Failed to update employee.']);
-        exit; 
+        echo "<script>alert('Failed to update employee.'); window.history.back();</script>";
     }
-} else {
-    echo json_encode(['success' => false, 'message' => 'Invalid action specified.']);
-    exit; 
 }
-
 $db->closeConn();
+?>
